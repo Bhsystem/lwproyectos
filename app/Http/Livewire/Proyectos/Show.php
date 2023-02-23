@@ -10,8 +10,8 @@ class Show extends Component
 {
 
     public $tableProyecto;
-    public $tableEtapas;
     public $mesage;
+    public $buttonNew  = 'Agregar';
 
     public $listeners = ['success'];
 
@@ -22,20 +22,29 @@ class Show extends Component
 
     public function mount($id){
         $this->tableProyecto = Proyecto::findorFail($id);
-        $this->tableEtapas = Etapa::where('proyecto_id',$id)->get();
     }
 
     public function newEtapa()
     {
+        $this->emit('seeNew');
 
+        ($this->buttonNew == 'Agregar') ? $this->buttonNew = 'Cancelar': $this->buttonNew = 'Agregar';
     }
     public function saveEtapa(){
-        $this->emit('saveProject');
+        $this->emit('saveProject',$this->tableProyecto->id);
         $this->emit('saveEtapa');
+        $this->emit('seeNew',false); 
+    }
+ 
+    public function success($sms){
+        $this->mesage = $sms ; 
     }
 
-    public function success($sms){
-        $this->mesage = $sms ;
+    public function backTo(){
+        $this->emit('saveProject',$this->tableProyecto->id);
+        $this->emit('saveEtapa'); 
+
+        $this->redirect(route('proyectos.index'));
     }
 
 }

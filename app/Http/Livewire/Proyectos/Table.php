@@ -8,15 +8,17 @@ use Livewire\Component;
 
 class Table extends Component
 {   
+//ordenamiento de columnas
+    public $sortColumn = 'id';
+    public $sortOrder;
 
-
-
-    public $textArea;
-    public $elementId = 0;
+//modal de pendiente a realizar
+    public $elementId;
     public $modalArease = false;
+    public $newRow = false;
 
+//campos de formulario
     public $projectId;
-    public $tableProyecto;
     public $tableEtapas;
     public $eDescription;
     public $eEstado ;
@@ -24,9 +26,10 @@ class Table extends Component
     public $eCorte = [];
     public $ePlanteam = [];
     public $efinalizacion = [];
+//listeners
+    public $listeners = ['saveEtapa','deleteEtapa','seeNew'];
 
-    public $listeners = ['saveEtapa','deleteEtapa'];
-
+//select multiples 
     public $procesos = [
         'Nuevo',
         'Mejora',
@@ -39,26 +42,24 @@ class Table extends Component
         '$ Cobros',   
     ];
 
-
-
     public $rows = [
-        'Procesos',
-        'Descripción de la Tarea',
-        'Pendiente por realizar',
-        'Fecha corte',
-        'Fecha planteamiento',
-        'Fecha finalizacion',
-        'Eliminar'
+        'estado' => 'Procesos',
+        'descripcion' => 'Descripción de la Tarea',
+        'pendiente' => 'Pendiente por realizar',
+        'fecha_corte' => 'Fecha corte',
+        'fecha_planteamiento' => 'Fecha planteamiento',
+        'fecha_finalizacion' => 'Fecha finalizacion',
+        'delete' => 'Eliminar'
     ];
 
     public function render()
     {   
-    
-        $this->tableProyecto = Proyecto::findorFail($this->projectId);
-        return view('livewire.proyectos.table');
+        $etapasTable = Etapa::orderBy($this->sortColumn, $this->sortOrder ?? 'asc')->where('proyecto_id',$this->projectId);
+        $etapasTable = $etapasTable->get();    
+        return view('livewire.proyectos.table',compact('etapasTable'));
     } 
     public function mount(){
-        $this->tableEtapas = Etapa::where('proyecto_id',$this->projectId)->get();
+        //$this->tableEtapas = Etapa::where('proyecto_id',$this->projectId)->get();
         $this->refresh();
         $this->ePendiente[0] = '';  
     }
@@ -76,8 +77,8 @@ class Table extends Component
 
         $this->tableEtapas = Etapa::where('proyecto_id',$this->projectId)->get();
         foreach($this->tableEtapas as $te){
-            $this->eDescription[$te->id] = $te->descripcion;
             $this->eEstado[$te->id] = $te->estado;
+            $this->eDescription[$te->id] = $te->descripcion;
             $this->ePendiente[$te->id] = $te->pendiente;
             $this->eCorte[$te->id] = $te->fecha_corte;
             $this->ePlanteam[$te->id] = $te->fecha_planteamiento;
@@ -95,7 +96,7 @@ class Table extends Component
         
         foreach($this->eDescription as $id => $data){
             Etapa::updateOrCreate(['id' => $id], [
-                'proyecto_id' => $this->tableProyecto->id,
+                'proyecto_id' => $this->projectId,
                 'descripcion' => $this->eDescription[$id],
                 'estado' => $this->eEstado[$id],
                 'pendiente' => $this->ePendiente[$id],
@@ -116,7 +117,7 @@ class Table extends Component
     }   
 
 
-    public function modalArea($id){
+    public function modalArea($id = 0){
         
         $this->elementId = $id;
         $this->modalArease = true;
@@ -127,6 +128,20 @@ class Table extends Component
         unset($this->eEstado[$id]);
 
         //dd($this->eDescription);
+    }
+
+    public function seeNew($state = true){
+        if($state === true){
+            ($this->newRow === false) ? $this->newRow = true : $this->newRow = false ;
+        }else{
+            $this->newRow = false;
+        }
+    }
+
+    public function sort($column)
+    {
+        $this->sortColumn = $column;
+        $this->sortOrder =  $this->sortOrder == 'desc' ? 'asc' : 'desc';
     }
 }      
 

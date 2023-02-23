@@ -15,7 +15,6 @@ class Save extends Component
     public $fecha_finalizacion;
     public $fecha_planteamiento;
     public $recompensa;
-    // public $bono = 'Activo';
     public $estado;
 
     protected $rules =[
@@ -24,21 +23,15 @@ class Save extends Component
         'prioridad'=> 'required',
         'trabajo'=> 'required',
         'escala'=> 'required',
-        //'fecha_finalizacion'=> 'required',
         'fecha_planteamiento'=> 'required|date',
         'recompensa'=> 'required',
     ];
-    public function render()
-    {
-        return view('livewire.proyectos.save');
-    }
 
     public function submit($id = Null)
     {
-        ($validated = $this->validate());
+        dd($validated = $this->validate());
         $project = Proyecto::updateOrCreate(['id'=>$id, 'persona_id' => auth()->user()->id],$validated)->id;
-
-        dd($project);
+        ($project);
         if(!$id){
             return $this->redirect(route('proyectos.show',$project));
         }

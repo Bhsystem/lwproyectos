@@ -53,6 +53,7 @@ class Index extends Component
         return view('livewire.proyectos.index', compact('proyectos'));
     }
 
+
     public function getManagersProperty()
     {
         return User::select('id','name')->orderBy('name')->get();
