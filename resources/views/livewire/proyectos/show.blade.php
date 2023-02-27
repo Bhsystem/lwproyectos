@@ -6,18 +6,31 @@
     
     
     <div class="my-2 bg-white m-auto rounded p-5">
-        <p class="text-xl text-center">Etapas del Proyecto</p>
-        <div class="flex justify-between">
-            
-            <button wire:click="saveEtapa()" class="btn bg-green-500 hover:bg-green-800 hover:text-white">Guardar</button>
-            
-            
-            @if ($mesage)
-            <div class="alert alert-success alert-dismissible fade show" role="alert">
-                {{ $mesage }}
+        
+        <div class="grid grid-cols-3">
+            <div class="col-1"> </div>
+
+            <div class="alert alert-success alert-dismissible fade show text-center" role="alert">
+                <x-jet-action-message on="successAlert">
+                    <div class="box-action-message">
+                        <x-alert-blue message="{{$message}}"></x-alert-blue>
+                    </div>
+                </x-jet-action-message>
             </div> 
-            @endif
-            <button wire:click="newEtapa()">{{$buttonNew}}</button>    
+        </div> 
+
+        <div class="grid grid-cols-3 gap-4">
+            <div class="w-full">
+                <button wire:click="saveEtapa()" class="btn bg-green-500 hover:bg-green-800 hover:text-white">Guardar</button>
+                
+            </div>
+            <div>
+                <p class="text-xl text-center">Etapas del Proyecto</p>
+            </div>
+            
+            <div class="flex justify-end">
+                <button wire:click="newEtapa()">Agregar</button>    
+            </div>
         </div>
         <livewire:proyectos.table :projectId="$tableProyecto->id" />
     </div>

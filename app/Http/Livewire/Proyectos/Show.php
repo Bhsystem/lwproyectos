@@ -10,7 +10,8 @@ class Show extends Component
 {
 
     public $tableProyecto;
-    public $mesage;
+    public $message;
+    public $status;
     public $buttonNew  = 'Agregar';
 
     public $listeners = ['success'];
@@ -26,9 +27,7 @@ class Show extends Component
 
     public function newEtapa()
     {
-        $this->emit('seeNew');
-
-        ($this->buttonNew == 'Agregar') ? $this->buttonNew = 'Cancelar': $this->buttonNew = 'Agregar';
+         $hola = $this->emit('seeNew');
     }
     public function saveEtapa(){
         $this->emit('saveProject',$this->tableProyecto->id);
@@ -36,8 +35,11 @@ class Show extends Component
         $this->emit('seeNew',false); 
     }
  
-    public function success($sms){
-        $this->mesage = $sms ; 
+    public function success($sms,$status){
+        
+        $this->message = $sms ; 
+        $this->status = $status ;
+        $this->emit('successAlert'); 
     }
 
     public function backTo(){

@@ -1,5 +1,6 @@
 <?php
 
+
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -35,6 +36,12 @@ Route::prefix('proyectos')->middleware(['auth:sanctum', config('jetstream.auth_s
     // Etapas
     //route::get('etapas/{id}',App\Http\Livewire\Proyectos\Show::class)->name('etapas.create');
     
+});
 
+Route::prefix('definiciones')->middleware(['auth:sanctum', config('jetstream.auth_session'),'verified'])->group(function(){
+    route::get('',App\Http\Livewire\Definicion\Index::class)->name('definiciones.index');
+});
 
+Route::prefix('informes')->middleware(['auth:sanctum', config('jetstream.auth_session'),'verified'])->group(function(){
+    route::get('',App\Http\Livewire\Informes\Index::class)->name('informes.index');
 });

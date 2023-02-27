@@ -105,7 +105,7 @@ class Table extends Component
                 'fecha_finalizacion' => (count($this->efinalizacion) === 0 || $this->efinalizacion[$id] === '' ) ? null :$this->efinalizacion[$id],
             ]); 
         }
-        $this->emit('success','Guardado con exito');
+        $this->emit('success','Guardado con exito','update');
         $this->refresh(); 
     }
 
@@ -113,7 +113,7 @@ class Table extends Component
         $etapa->delete();
         $this->unsetEtapa($etapa->id);
         $this->refresh();
-        $this->emit('success','Eliminado con exito');
+        $this->emit('success','Eliminado con exito','delete');
     }   
 
 

@@ -46,6 +46,7 @@ class Index extends Component
         }
         if($this->manager){
             $proyectos->where('persona_id',$this->manager);
+
         }
 
         $proyectos = $proyectos->get();

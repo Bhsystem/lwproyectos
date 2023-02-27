@@ -1,0 +1,1 @@
+<img src="{{asset('storage/logoBH.png')}}" alt="logo BH" width="{{$width}}"> 

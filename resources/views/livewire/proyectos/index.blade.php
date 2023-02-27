@@ -2,13 +2,14 @@
     {{-- The Master doesn't talk, he acts. --}}
     
     {{-- Barra de accion --}}
-    <div class="flex justify-between shadow bg-gray-200 p-2 rounded">
+    <div class="flex justify-between shadow bg-gray-200 py-3 px-5 rounded rounded-t">
         <div>
             <h1>Proyectos</h1>
         </div>
+
         <div>
             <label for="select">estado del Proyecto</label><br>
-            <select name="select" class="w-full" wire:model="status">
+            <select name="select" class="lw-select " wire:model="status">
                 <option>Activo</option>
                 <option>Aplazado</option>
                 <option>Finalizado</option>
@@ -18,7 +19,7 @@
 
         <div>
             <label for="select">Persona Responsable</label><br>
-            <select name="select" class="w-full" wire:model="manager">
+            <select name="select" class="lw-select" wire:model="manager">
                     <option value="">Todos</option>
                 @foreach($this->managers as $user )
                     <option value="{{$user->id}}">{{$user->name}}</option> 
@@ -26,22 +27,20 @@
 
             </select>
         </div>
-        <div>
-            <a href="{{route('proyectos.create')}}">Crear Proyecto</a>
+        <div class="my-auto">
+            <a class="btn bg-blue-300 my-1 hover:bg-blue-500 hover:text-white" href="{{route('proyectos.create')}}">Crear Proyecto</a>
         </div>
     </div>
 
     {{-- Filtro de Busqueda --}}
-        <div class="bg-white flex justify-end pt-5">
+        <div class="bg-white flex justify-end px-5">
             <x-input-search type="text" wire:model="search" placeholder="Buscar" class="self-end "/>
         </div>
     {{--Contenedor de tabla--}}
-    <div class=" bg-red-200">
-
-
+   <div role="region" aria-labelledby="HeadersRow" tabindex="0" class="colheaders">
         <table class="w-full border-2 border-black">
             <thead class="w-90">
-                <tr class="py-2 bg-black text-white text-left">
+                <tr class="py-2 bg-black text-white text-left cursor-alias">
                     @foreach($columns as $key => $column)
                         <th class="py-2 w-1" wire:click="sort('{{$key}}')">
                             <div class="flex gap-1"> 
@@ -66,8 +65,8 @@
             </thead>
             <tbody class="bg-white overflow-auto">
                 @foreach($proyectos as $proyecto)
-                <tr class="hover:bg-gray-200 hover:font-bold" wire:click="viewProject({{$proyecto->id}})">
-                    <td class="p-2">{{$proyecto->proyecto}}</td>
+                <tr class="hover:bg-gray-200 hover:font-bold cursor-pointer" wire:click="viewProject({{$proyecto->id}})">
+                    <th scope="row" class="p-2 hover:bg-gray-200">{{$proyecto->proyecto}}</th>
                     <td>{{$proyecto->user->name ?? 'Usuario Eliminado'}}</td>
                     <td>{{$proyecto->centro_costo}}</td>
                     <td>{{$proyecto->trabajo}}</td>

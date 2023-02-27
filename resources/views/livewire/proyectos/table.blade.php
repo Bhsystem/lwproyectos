@@ -25,6 +25,8 @@
                 <td><x-jet-input type="date" wire:model="ePlanteam.0" class="w-full"/></td>
                 <td><x-jet-input type="date" wire:model="efinalizacion.0" class="w-full"/></td>
             </tr>
+
+
             @foreach($etapasTable as $etapas)
              <tr>
                 <td>
@@ -55,16 +57,16 @@
                         {{($etapas->fecha_finalizacion)? date('d/m/Y',strtotime($etapas->fecha_finalizacion)): '--'}}
                     @endif
                 </td>
-                <td><button class="btn-delete" wire:click="deleteEtapa({{$etapas}})">Eliminar</button></td>
+                <td><button class="btn-delete" onclick="confirm('¿Está seguro?') || event.stopImmediatePropagation()" wire:click="deleteEtapa({{$etapas}})">Eliminar</button></td>
              </tr>   
             @endforeach
         </tbody>
     </table>
 
-    <div x-data="{ open: @entangle('modalArease') }" class="fixed w-1/2 top-1/3 left-1/4">
+    <div x-data="{ open: @entangle('modalArease') }" class="fixed w-1/2 top-1/3 left-1/4 z-10">
         <div x-show="open" @click.outside="open = false" x-trap="open" class="bg-black/75 rounded  p-2 ">
             <label class="text-white"> Pendiente Por realizar</label>
-            <textarea x-text="$wire.ePendiente" wire:model="ePendiente.{{ $elementId ?? 0 }}" class="w-full rounded"></textarea>
+            <textarea x-text="$wire.ePendiente" wire:model.debounce.400ms="ePendiente.{{ $elementId ?? 0 }}" class="w-full rounded"></textarea>
         </div>
     </div>
 </div>  
