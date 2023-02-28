@@ -85,6 +85,6 @@
     
     <div class="my-2 p-5 rounded bg-white" id="recompensa">
         <h3 class="text-lg">Esfuerzo Recompensa</h3>
-        <p>asxase</p>
+        <p></p>
     </div>
-</div>
+</div>  
