@@ -30,7 +30,6 @@ class Index extends Component
         'bono' => 'Magnitud',
         'estado' => 'Estado',
     ];
-    //listenesr
 
     //functions
     public function render()
@@ -60,7 +59,10 @@ class Index extends Component
         return User::select('id','name')->orderBy('name')->get();
     }
 
-
+    public function getProyectTable($project)
+    {
+       $this->emit('getTable',$project);
+    }
 
     public function viewProject($id)
     {

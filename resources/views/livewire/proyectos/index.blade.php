@@ -68,7 +68,13 @@
                 </thead>
                 <tbody class="bg-white overflow-auto">
                     @foreach($proyectos as $proyecto)
-                    <tr class="hover:bg-gray-200 hover:font-bold cursor-pointer" x-data="{porject_id : 10}" x-on:contextmenu="$event.preventDefault();contextMenuPosition('blue');showContextMenu=true"  @click.prevent="showContextMenu=false" wire:click="viewProject({{$proyecto->id}})">
+                    <tr class="hover:bg-gray-200 hover:font-bold cursor-pointer" 
+                        x-on:contextmenu="$event.preventDefault();
+                                          contextMenuPosition({{$proyecto}}); 
+                                          $wire.getProyectTable({{$proyecto}});
+                                          showContextMenu=true;"  
+                        @click.prevent="showContextMenu=false" 
+                        wire:click="viewProject({{$proyecto->id}})">
                         <th scope="row" class="p-2 hover:bg-gray-200">{{$proyecto->proyecto}}</th>
                         <td>{{$proyecto->user->name ?? 'Usuario Eliminado'}}</td>
                         <td>{{$proyecto->centro_costo}}</td>
@@ -93,120 +99,6 @@
                 </tbody>
             </table>
         </div>
-        {{-- <livewire:proyectos.contextual-menu projectId="1" /> --}}
-        <x-contextual-menu link=""/>
-
+        <livewire:proyectos.contextual-menu/>
     </div>
-
 </div>
-
-<script>
-    var menu = document.getElementById("contextMenuModal")
-
-        function contextMenuPosition($color){
-            var e = window.event;
-            menu.style.left = e.x + "px" ;
-            menu.style.top = e.y + "px" ;
-        }    
-</script>
-
-
-
-
-
-
-
-
-{{-- Borrar esta mamada --}}
-
-{{-- <div x-data="juego()">
-    <h1 >
-        <span x-text="intentos"></span>
-        Intentos
-    </h1>
-    <div class="grid grid-cols-3 w-44">
-        <template x-for="(carta, index) in cartas" :key="index">                
-                <div class="bg-amber-500 w-10 p-2 m-2" @click="voltear(carta)">                        
-                    <button>
-                        <i x-bind:class="(carta.volteada ? carta.icon : '')"></i>
-                    </button>                        
-                </div>                
-        </template>
-    </div>    
-</div>
-
-<div id="dialogo" x-data="{show:true, message:''}" x-show="show" 
-            x-transition:enter="transition ease-out duration-300"
-            x-transition:enter-start="opacity-0 scale-90"
-            x-transition:enter-end="opacity-100 scale-100"
-            x-transition:leave="transition ease-in duration-300"
-            x-transition:leave-start="opacity-100 scale-100"
-            x-transition:leave-end="opacity-0 scale-90"
-        >
-            <h1 x-text="message"></h1>
-</div>   
-
-<script>
-    function juego() {
-        return {
-            cartas: [
-                { icon: 'fa-solid fa-baseball-bat-ball', volteada: false, encontrada: false },
-                { icon: 'fa-solid fa-baseball-bat-ball', volteada: false, encontrada: false },
-                { icon: 'fa-solid fa-medal', volteada: false, encontrada: false },
-                { icon: 'fa-solid fa-medal', volteada: false, encontrada: false },                     
-                { icon: 'fa-solid fa-bicycle', volteada: false, encontrada: false },
-                { icon: 'fa-solid fa-bicycle', volteada: false, encontrada: false },                      
-                ].sort(() => Math.random() - .5),
-            intentos:0,
-            voltear(carta) {
-                carta.volteada = true ;  
-                if( this.cartasVolteadas.length == 2 )
-                {
-                    this.intentos++;
-                    if (this.cartasVolteadas[0].icon ==  this.cartasVolteadas[1].icon )
-                    {
-                        this.mensaje("Encontraste una pareja!!");     
-                        this.cartasVolteadas.forEach(carta => carta.encontrada = true);
-                        if (this.cartasEnJuego.length == 0) 
-                        {
-                            alert("Ganaste!!!");
-                            // Resetear el juego
-                            this.baraja.forEach(carta => {carta.volteada = false; carta.encontrada = false});
-                        }                                       
-                    }
-                    else
-                    {
-
-                        setTimeout(() => 
-                        {
-                            this.cartasVolteadas.forEach(carta => carta.volteada = false);                                
-                        }, 500);
-                    }
-                }                   
-            },
-            get cartasVolteadas() 
-            {
-                return this.cartas.filter(carta => (carta.volteada && !carta.encontrada));
-            },    
-
-            get cartasEnJuego()
-            {
-                return this.cartas.filter(carta => (!carta.encontrada));
-            },
-
-            get baraja()
-            {
-                return this.cartas;
-            }   ,  
-            mensaje(msg)
-            {
-                console.log(  msg );
-                document.getElementById('dialogo')._x_dataStack[0].show = 1;
-                document.getElementById('dialogo')._x_dataStack[0].message = msg;
-                setInterval(() => {
-                    document.getElementById('dialogo')._x_dataStack[0].show = 0;
-                }, 2500);
-            }                        
-        }        
-    };
-</script> --}}
