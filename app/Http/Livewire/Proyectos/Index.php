@@ -59,11 +59,6 @@ class Index extends Component
         return User::select('id','name')->orderBy('name')->get();
     }
 
-    public function getProyectTable($project)
-    {
-       $this->emit('getTable',$project);
-    }
-
     public function viewProject($id)
     {
         $this->redirect(route('proyectos.show',$id));
@@ -79,6 +74,7 @@ class Index extends Component
             ->orWhere('escala','LIKE',"%$this->search%");
         });
     }    
+    
     public function searchStatus($table)
     {
         return $table->where('estado',$this->status);

@@ -24,11 +24,9 @@
     <script>
     var menu = document.getElementById("contextMenuModal")
 
-        function contextMenuPosition($table){
+        function contextMenuPosition(){
             var e = window.event;
             menu.style.left = e.x + "px" ;
             menu.style.top = e.y + "px" ;
-            
-            console.log($table);
         }    
 </script>

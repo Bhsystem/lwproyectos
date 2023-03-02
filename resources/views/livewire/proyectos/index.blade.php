@@ -70,8 +70,8 @@
                     @foreach($proyectos as $proyecto)
                     <tr class="hover:bg-gray-200 hover:font-bold cursor-pointer" 
                         x-on:contextmenu="$event.preventDefault();
-                                          contextMenuPosition({{$proyecto}}); 
-                                          $wire.getProyectTable({{$proyecto}});
+                                          contextMenuPosition(); 
+                                          $wire.emit('getTable',{{$proyecto}})
                                           showContextMenu=true;"  
                         @click.prevent="showContextMenu=false" 
                         wire:click="viewProject({{$proyecto->id}})">
