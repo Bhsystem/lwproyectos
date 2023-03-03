@@ -2,12 +2,7 @@
     <div class=" rounded flex my-5 p-5">
        <div class="px-2">
             <h1 class="text-2xl text-center font-bold">Gestion de Proyectos</h1>
-            <p class="m-5 text-justify ">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-            tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-            quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-            consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-            cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-            proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+            <p class="m-5 text-justify ">Plataforma desarrollada con el fin de que pueda Gestionar las tareas pendientes de sus diferentes proyectos, facilitando el seguimiento y el complimiento de objetivos, centralizando la información de los distintos proyectos liderados por el usuario, las fases, las tareas pendientes por realizar y llevando el control de tiempos, esfuerzo y recompensas, centralizando la información de cada proyecto para facilitar así su seguimiento y constante evolución</p>
        </div>
             <x-logo width='10%'/>
     </div>
@@ -23,8 +18,7 @@
                 </div>
                 <div>
                     <p class="text-xl text-center">Lista de Proyectos</p>
-                    <p class="text-justify">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-                        tempor incididunt ut labore et dolore magna aliqua.</p>
+                    <p class="text-justify">Lista para la Gestion de Proyectos organizada por usuarios,el proyecto se debe recoger una planificación del conjunto de actividades, así como la forma de llevarlas a cabo. </p>
                 </div>
             </a>
         </div>
@@ -47,7 +41,7 @@
         <div class="col-1 p-5 m-auto hover:rounded border-x-2 hover:bg-gray-100 hover:shadow-sm "> 
             <a href="{{route('definiciones.index')}}" class="flex justify-between">
                 <div class="col-1 w-1/2">
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-full hover:fill-amber-100 hover:stroke-blue-400">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-4/6 hover:fill-amber-100 hover:stroke-blue-400">
                       <path stroke-linecap="round" stroke-linejoin="round" d="M7.5 8.25h9m-9 3H12m-9.75 1.51c0 1.6 1.123 2.994 2.707 3.227 1.129.166 2.27.293 3.423.379.35.026.67.21.865.501L12 21l2.755-4.133a1.14 1.14 0 01.865-.501 48.172 48.172 0 003.423-.379c1.584-.233 2.707-1.626 2.707-3.228V6.741c0-1.602-1.123-2.995-2.707-3.228A48.394 48.394 0 0012 3c-2.392 0-4.744.175-7.043.513C3.373 3.746 2.25 5.14 2.25 6.741v6.018z" />
                     </svg>
                 </div>
@@ -59,9 +53,8 @@
         </div>        
         <div class="col-1 p-5 m-auto hover:rounded border-r-2 hover:bg-gray-100 hover:shadow-sm " class="flex justify-between"> 
             <a href="http://www.usuarios.bh/inicio" class="flex justify-between" target="blank">
-                
                 <div class="col-1 w-1/2">
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-full hover:fill-amber-100 hover:stroke-blue-400">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-4/6 hover:fill-amber-100 hover:stroke-blue-400">
                       <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z" />
                     </svg>
                 </div>

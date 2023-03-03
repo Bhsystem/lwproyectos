@@ -23,7 +23,10 @@
                 <td><x-jet-input type="text" wire:model="ePendiente.0" wire:click="modalArea()" class="w-full"/></td>
                 <td><x-jet-input type="date" wire:model="eCorte.0" class="w-full"/></td>
                 <td><x-jet-input type="date" wire:model="ePlanteam.0" class="w-full"/></td>
-                <td><x-jet-input type="date" wire:model="efinalizacion.0" class="w-full"/></td>
+                <td>@if(auth()->user()->id == 5)
+                    <x-jet-input type="date" wire:model="efinalizacion.0" class="w-full"/>
+                    @endif
+                </td>
             </tr>
 
 

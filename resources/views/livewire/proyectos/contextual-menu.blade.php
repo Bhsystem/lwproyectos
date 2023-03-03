@@ -3,12 +3,13 @@
         <slot>
             <li>
                 <a href="{{$link}}"  class="px-4 py-1 flex hover:bg-gray-100 no-underline hover:no-underline transition-colors duration-100">
-                    View Task
+                    Ver Etapas
                 </a>
-                <a href="#" class="px-4 py-1 flex hover:bg-gray-100 no-underline hover:no-underline transition-colors duration-100">
-                    Edit Task
+                <a href="#" wire:click.prevent="delayProject()" class="px-4 py-1 flex hover:bg-gray-100 no-underline hover:no-underline transition-colors duration-100">
+                    Aplazar Proyecto
                 </a>
-                <a href="#" wire:click.prevent="deleteProject()" class="px-4 py-1 flex hover:bg-gray-100 no-underline hover:no-underline transition-colors duration-100 text-red-500">   Delete Task
+                <a href="#" onclick="confirm('¿Está seguro?') || event.stopImmediatePropagation()" wire:click.prevent="deleteProject()" class="px-4 py-1 flex hover:bg-gray-100 no-underline hover:no-underline transition-colors duration-100 text-red-500">
+                   Eliminar Proyecto
                 </a>
             </li>
         </slot>

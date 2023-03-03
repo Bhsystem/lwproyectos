@@ -7,12 +7,10 @@
     
     <div class="my-2 bg-white m-auto rounded p-5">
         
-        <div class="grid grid-cols-3">
-            <div class="col-1"> </div>
-
+        <div class=" h-10">
             <div class="alert alert-success alert-dismissible fade show text-center" role="alert">
                 <x-jet-action-message on="successAlert">
-                    <div class="box-action-message">
+                    <div class=" flex justify-center box-action-message">
                         <x-alert-blue message="{{$message}}"></x-alert-blue>
                     </div>
                 </x-jet-action-message>

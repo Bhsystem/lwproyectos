@@ -31,6 +31,9 @@ class Index extends Component
         'estado' => 'Estado',
     ];
 
+    //listeners
+    protected $listeners = ['refreshComponent' => '$refresh'];
+
     //functions
     public function render()
     {   
@@ -47,7 +50,10 @@ class Index extends Component
             $proyectos->where('persona_id',$this->manager);
 
         }
-
+        if(Auth()->user()->id != 5){
+            $proyectos->where('persona_id',auth()->user()->id);
+        }
+            
         $proyectos = $proyectos->get();
 
         return view('livewire.proyectos.index', compact('proyectos'));
@@ -63,6 +69,7 @@ class Index extends Component
     {
         $this->redirect(route('proyectos.show',$id));
     }
+
 
     public function searchFilter($table)
     {

@@ -18,7 +18,7 @@
                     <option value="">Todos</option>
                 </select>
             </div>        
-
+            @if(auth()->user()->id == 5)
             <div>
                 <label for="select">Persona Responsable</label><br>
                 <select name="select" class="lw-select" wire:model="manager">
@@ -29,6 +29,7 @@
 
                 </select>
             </div>
+            @endif
             <div class="my-auto">
                 <a class="btn bg-blue-300 my-1 hover:bg-blue-500 hover:text-white" href="{{route('proyectos.create')}}">Crear Proyecto</a>
             </div>
