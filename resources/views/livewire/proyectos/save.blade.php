@@ -9,6 +9,21 @@
     </div>
    <div class="flex justify-center">
        <form wire:submit.prevent="submit" class="bg-white shadow p-10 rounded w-1/3"> 
+           @if(auth()->user()->id == 5)
+           <div class="my-5">
+               <x-jet-label class="text-indigo-300 font-bold">Responsable del Proyecto</x-jet-label>
+               <select class="lw-select" wire:model="persona" >
+                   <option value=""></option>
+                  <optgroup label="Centro de Costo">
+                      @foreach($desplegableResponsables as $id => $responsable)
+                      <option value="{{$id}}">{{$responsable->name}}</option>
+                      @endforeach
+                  </optgroup>
+               </select>
+                <x-jet-input-error for="persona"/>
+           </div>
+           @endif            
+
            <div class="my-5">
                <x-jet-label class="text-indigo-300 font-bold">Centro de Costo</x-jet-label>
                <select class="lw-select" wire:model="centro_costo" >

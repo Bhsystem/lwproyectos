@@ -38,7 +38,7 @@ class Project extends Component
     public function rules(){
 
 
-        if(auth()->user()->id == 1){
+        if(auth()->user()->id == 5){
             return [
                 'estado' => 'required',
                 'centro_costo'=> 'required',
@@ -47,18 +47,17 @@ class Project extends Component
                 'trabajo'=> 'required',
                 'escala'=> 'required',
                 'fecha_planteamiento'=> 'required|date',
+                'fecha_finalizacion'=> 'date',
                 'recompensa'=> 'required', 
             ];   
         }else{
             return [
-                'estado' => 'required',
                 'centro_costo'=> 'required',
                 'proyecto'=> 'required',
                 'prioridad'=> 'required',
                 'trabajo'=> 'required',
                 'escala'=> 'required',
                 'fecha_planteamiento'=> 'required|date',
-                'fecha_finalizacion'=> 'required|date',
                 'recompensa'=> 'required', 
             ];
         }

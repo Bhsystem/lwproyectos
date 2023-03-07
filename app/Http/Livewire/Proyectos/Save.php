@@ -4,6 +4,7 @@ namespace App\Http\Livewire\Proyectos;
 
 use App\Models\Desplegable;
 use App\Models\Proyecto;
+use App\Models\User;
 use Livewire\Component;
 
 class Save extends Component
@@ -17,7 +18,9 @@ class Save extends Component
     public $fecha_planteamiento;
     public $recompensa;
     public $estado;
+    public $persona;
 
+    public $desplegableResponsables;
     public $desplegableCentro;
     public $desplegablePrioridad;
     public $desplegableTrabajo;
@@ -46,14 +49,23 @@ class Save extends Component
 
     public function submit($id = Null)
     {   
+        $persona_id = auth()->user()->id;
+
+        if($this->persona){
+            $persona_id = $this->persona;
+        }
+
         $validated = $this->validate();
-        $project = Proyecto::updateOrCreate(['id'=>$id, 'persona_id' => auth()->user()->id],$validated)->id;
+        $project = Proyecto::updateOrCreate(['id'=>$id, 'persona_id' => $persona_id],$validated)->id;
+        
         if(!$id){
             return $this->redirect(route('proyectos.show',$project));
         }
     } 
 
     public function setValues(){
+
+        $this->desplegableResponsables = User::select('id','name')->get();
         $this->desplegable = Desplegable::get();
         $this->desplegableCentro = $this->desplegable->where('tipo','centro de Costo');
         $this->desplegablePrioridad = $this->desplegable->where('tipo','Prioridad');
