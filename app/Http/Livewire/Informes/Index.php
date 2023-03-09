@@ -2,8 +2,9 @@
 
 namespace App\Http\Livewire\Informes;
 
-use Livewire\Component;
 use App\Models\Proyecto;
+use App\Models\User;
+use Livewire\Component;
 
 class Index extends Component
 {
@@ -12,8 +13,11 @@ class Index extends Component
     public $proyectoAplazado;
 
 
+
+
     public function render()
     {
+        $this->tableUsuarios = User::get();  
         $this->tableProyectos = Proyecto::orderBy('persona_id','asc')->orderBy('prioridad','asc')->get();
         $this->getProyectos();
         return view('livewire.informes.index');
