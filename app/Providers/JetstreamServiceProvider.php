@@ -2,8 +2,8 @@
 
 namespace App\Providers;
 
+use App\Http\Controllers\authController;
 use App\Actions\Jetstream\DeleteUser;
-use App\Http\Controllers\AuthController;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
@@ -12,7 +12,7 @@ use Laravel\Fortify\Fortify;
 use Laravel\Jetstream\Jetstream;
 
 class JetstreamServiceProvider extends ServiceProvider
-{
+{   
     /**
      * Register any application services.
      */
@@ -20,6 +20,7 @@ class JetstreamServiceProvider extends ServiceProvider
     {
         //
     }
+
 
     /**
      * Bootstrap any application services.
@@ -34,21 +35,11 @@ class JetstreamServiceProvider extends ServiceProvider
     }
 
     protected function login(){
-        
         Fortify::authenticateUsing(function (Request $request) {
-            //$user = User::where('email', $request->email)->orwhere('client_ip', $request->getClientIp())->first();
-            $user = User::where('email', $request->email)->first();
-
-                if ($user && Hash::check($request->password, $user->password)) 
-                {
-                    return $user;
-                }
-
-                // if($user && $user->client_ip){
-                //     return $user;    
-                // }   
+           $user_id = app(authController::class)->getUserId();
+           $user = User::find($user_id);
+           return $user; 
         });
-
     }
     /**
      * Configure the permissions that are available within the application.

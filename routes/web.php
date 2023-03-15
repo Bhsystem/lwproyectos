@@ -49,3 +49,5 @@ Route::prefix('definiciones')->middleware(['auth:sanctum'])->group(function(){
 Route::prefix('informes')->middleware(['auth:sanctum'])->group(function(){
     route::get('',App\Http\Livewire\Informes\Index::class)->name('informes.index');
 });
+
+route::get('api/user_id',[App\Http\Controllers\authController::class,'getuserId'])->name('api.user_id');

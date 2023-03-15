@@ -12,9 +12,9 @@
             </div>
         @endif
 
-        <form method="POST" action="{{ route('login') }}">
+      <form method="POST" action="{{ route('login') }}">
             @csrf
-
+{{--   
             <div>
                 <x-jet-label for="email" value="{{ __('Email') }}" />
                 <x-jet-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required autofocus />
@@ -43,6 +43,27 @@
                     {{ __('Log in') }}
                 </x-jet-button>
             </div>
-        </form>
+            --}}
+        </form> 
     </x-jet-authentication-card>
 </x-guest-layout>
+
+<script src="https://code.jquery.com/jquery-3.6.1.min.js" integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
+<script type="text/javascript">
+    $(document).ready(function(){
+        send();
+    });
+    function send(){
+            $.ajax({
+                url:'{{route('login')}}',
+                method:'POST',
+                data:{
+                        email:'a@a',
+                        password:'123',
+                        _token:$('input[name="_token"]').val(),
+                    }
+            }).done(function(res){
+               window.location.replace("{{route('dashboard')}}");
+            })
+        }
+</script>
