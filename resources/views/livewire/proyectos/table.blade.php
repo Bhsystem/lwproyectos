@@ -34,7 +34,7 @@
              <tr>
                 <td>
                     <select wire:model="eEstado.{{ $etapas->id }}" :key="{{$etapas->id}}" class="lw-select">
-                        <option> Tipo de Trabajo </option>
+                        <option>{{$etapas->estado ?? "Tipo de Trabajo"}}</option>
                         <optgroup label="Tipos de Trabajo">
                             @foreach($procesos as $pr)
                                 <option>{{$pr}}</option>
