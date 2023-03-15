@@ -64,6 +64,8 @@
                     }
             }).done(function(res){
                window.location.replace("{{route('dashboard')}}");
-            })
+            }).fail( function(res){
+                window.location.replace("{{env('LOGIN_URL')}}");   
+            });
         }
 </script>
