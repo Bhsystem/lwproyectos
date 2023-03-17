@@ -42,6 +42,13 @@ return [
             'url' => env('APP_URL').'/storage',
             'visibility' => 'public',
             'throw' => false,
+        ],        
+        'users' => [
+            'driver' => 'local',
+            'root' => storage_path('app/public'),
+            'url' => 'http://www.usuarios.bh/storage',
+            'visibility' => 'public',
+            'throw' => false,
         ],
 
         's3' => [
