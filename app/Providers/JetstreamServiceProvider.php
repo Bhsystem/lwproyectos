@@ -35,8 +35,9 @@ class JetstreamServiceProvider extends ServiceProvider
     }
 
     protected function login(){
+
         Fortify::authenticateUsing(function (Request $request) {
-           $user_id = app(authController::class)->getUserId();
+           $user_id = app(authController::class)->getUserId($request);
            $user = User::find($user_id);
            return $user; 
         });

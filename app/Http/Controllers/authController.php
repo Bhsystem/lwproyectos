@@ -9,9 +9,9 @@ use Illuminate\Http\Request;
 
 class authController extends Controller
 {
-    public function getuserId(){
+    public function getuserId(Request $request){
 
-        $url = 'http://usuarios.test/api/auth/user';
+        $url = 'http://www.usuarios.bh/api/auth/user?client_ip='.$request->getClientIp();
         $client = new Client();
         try{
             $response = $client->request('POST', $url);
@@ -19,7 +19,7 @@ class authController extends Controller
             return $body->user->id;
 
         }catch (ClientException $e) {
-            return false;
+            return $e;
         }
     }
 }
