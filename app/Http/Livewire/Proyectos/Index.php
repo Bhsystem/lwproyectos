@@ -12,7 +12,7 @@ class Index extends Component
     public $tableProyectos;
 
     //$ordenamiento
-    public $sortColumn = 'id';
+    public $sortColumn = 'fecha_planteamiento';
     public $sortOrder;
     public $search;  
     public $status = 'Activo';
@@ -38,7 +38,7 @@ class Index extends Component
     public function render()
     {   
         
-        $proyectos = Proyecto::orderBy($this->sortColumn, $this->sortOrder ?? 'asc');
+        $proyectos = Proyecto::orderBy($this->sortColumn, $this->sortOrder ?? 'ASC');
 
         if($this->search){
             $proyectos =  $this->searchFilter($proyectos);
