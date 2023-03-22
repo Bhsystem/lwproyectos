@@ -30,16 +30,33 @@ class Table extends Component
     public $listeners = ['saveEtapa','deleteEtapa','seeNew'];
 
 //select multiples 
+    // public $procesos = [
+    //     'Nuevo',
+    //     'Mejora',
+    //     'Mantenimiento',
+    //     'Reparacion',
+    //     'Reemplazo',
+    //     'Gobierno',
+    //     'Indicadores',
+    //     'Eliminar',
+    //     '$ Cobros',   
+    // ];
+
     public $procesos = [
-        'Nuevo',
-        'Mejora',
-        'Mantenimiento',
-        'Reparacion',
-        'Reemplazo',
-        'Gobierno',
-        'Indicadores',
-        'Eliminar',
-        '$ Cobros',   
+        "Planteamiento",
+        "Especificaciones",
+        "Diseño",
+        "Planeacion",
+        "Cotizacion",
+        "Presupuesto",
+        "Compra",
+        "Ejecucion",
+        "Construccion",
+        "Instalacion",
+        "Entregado",
+        "Seguimiento",
+        "Revision",
+        "Aplazado",
     ];
 
     public $rows = [
