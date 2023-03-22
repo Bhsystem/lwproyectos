@@ -38,9 +38,11 @@
                           </optgroup>
                         </select>
                     </td>
+
                     <td class="p-2">
                         <x-jet-input type="text" wire:model="proyecto" class="w-full" />
                     </td>
+
                     <td class="p-2">
                         <select class="lw-select" wire:model="prioridad">
                            <option></option>
@@ -85,8 +87,8 @@
                         <select class="lw-select" wire:model="recompensa">
                            <option value=""></option>
                            <optgroup label="Trabajo">
-                            @foreach($desplegableTrabajo as $trabajo)
-                                <option>{{$trabajo->descripcion}}</option>
+                            @foreach($desplegableRecompensa as $recompensa)
+                                <option>{{$recompensa->descripcion}}</option>
                             @endforeach
                            </optgroup>
                        </select>
