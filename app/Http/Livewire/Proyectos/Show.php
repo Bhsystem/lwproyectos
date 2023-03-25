@@ -46,7 +46,8 @@ class Show extends Component
         $this->emit('saveProject',$this->tableProyecto->id);
         $this->emit('saveEtapa'); 
 
-        $this->redirect(route('proyectos.index'));
+        //$this->redirect(route('proyectos.index'));
+        $this->redirect(route('proyectos.index' , array('manager' => $this->tableProyecto->persona_id)));
     }
 
 }

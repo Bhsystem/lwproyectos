@@ -1,5 +1,5 @@
 <div class="p-5">
-    <button wire:click="backTo()">Regresar</button>
+    <button wire:click="backTo()" class="btn bg-red-600 text-white  border-red-100 border-2 p-2 rounded-md hover:text-red-800 hover:bg-red-400 hover:shadow-2xl">Regresar</button>
     <livewire:proyectos.project :projectId="$tableProyecto->id" />
 
     <hr>
@@ -26,8 +26,8 @@
                 <p class="text-xl text-center">Etapas del Proyecto</p>
             </div>
             
-            <div class="flex justify-end">
-                <button wire:click="newEtapa()">Agregar</button>    
+            <div class="flex justify-end my-2">
+                <button wire:click="newEtapa()" class="btn bg-blue-300 hover:bg-blue-500 hover:text-white">Agregar</button>    
             </div>
         </div>
         <livewire:proyectos.table :projectId="$tableProyecto->id" />

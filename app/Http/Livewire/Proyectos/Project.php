@@ -40,14 +40,13 @@ class Project extends Component
 
         if(auth()->user()->id == 5){
             return [
-                'estado' => 'required',
                 'centro_costo'=> 'required',
                 'proyecto'=> 'required',
                 'prioridad'=> 'required',
                 'trabajo'=> 'required',
                 'escala'=> 'required',
                 'fecha_planteamiento'=> 'required|date',
-                'fecha_finalizacion'=> 'date',
+                'fecha_finalizacion'=> 'nullable|date',
                 'recompensa'=> 'required', 
             ];   
         }else{
@@ -93,9 +92,13 @@ class Project extends Component
 
     public function submit($id = Null)
     {   
+
+        if($this->fecha_finalizacion && auth()->user()->id == 5){
+            $this->estado = 'Finalizado';
+        }
         $validated = $this->validate();
-        //dd($validated);
-        Proyecto::updateOrCreate(['id'=>$id],$validated);
+
+        Proyecto::updateOrCreate(['id' => $id],$validated,[ 'estado' => $this->estado]);
     }
 
     public function setValues(){

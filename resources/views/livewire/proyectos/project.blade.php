@@ -15,7 +15,6 @@
         <table class="table">
             <thead>
                 <tr>
-                    <th class="p-2">Estado</th>
                     <th class="p-2">Proyecto</th>
                     <th class="p-2">Prioridad</th>
                     <th class="p-2">Centro de costo</th>
@@ -28,17 +27,7 @@
             </thead>
             <tbody>
                 <tr>
-                    <td class="p-2">     
-                        <select class="lw-select" wire:model="estado" >
-                          <option value=""></option>
-                          <optgroup label="Estado">
-                             <option>Activo</option>
-                             <option>Aplazado</option>
-                             <option>Finalizado</option>
-                          </optgroup>
-                        </select>
-                    </td>
-
+                    
                     <td class="p-2">
                         <x-jet-input type="text" wire:model="proyecto" class="w-full" />
                     </td>
@@ -95,10 +84,13 @@
                     </td>
                     <td class="p-2">
                         <x-jet-input type="date" wire:model="fecha_planteamiento" class="w
-                        -full" /></td>
+                        -full" />
+
+                    </td>
                     <td class="p-2">
                         <x-jet-input type="date" wire:model="fecha_finalizacion" class="w-
-                        full" /></td>
+                        full" />
+                    </td>
                 </tr>
             </tbody>
         </table>

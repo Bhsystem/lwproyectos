@@ -18,6 +18,10 @@ class Index extends Component
     public $status = 'Activo';
     public $manager;
 
+    protected $queryString = [
+        'manager' => ['except' => ''],
+    ];
+
     public $columns = [
         'proyecto' => 'Proyecto',
         'persona_id' => 'Responsable',
@@ -32,7 +36,7 @@ class Index extends Component
     ];
 
     //listeners
-    protected $listeners = ['refreshComponent' => '$refresh'];
+    protected $listeners = ['refreshComponent' => '$refresh', ''];
 
     //functions
     public function render()
@@ -50,7 +54,7 @@ class Index extends Component
             $proyectos->where('persona_id',$this->manager);
 
         }
-        if(Auth()->user()->id != 5){
+        if(Auth()->user()->id != 1){
             $proyectos->where('persona_id',auth()->user()->id);
         }
             
