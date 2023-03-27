@@ -54,7 +54,7 @@ class Index extends Component
             $proyectos->where('persona_id',$this->manager);
 
         }
-        if(Auth()->user()->id != 1){
+        if(Auth()->user()->id != 5){
             $proyectos->where('persona_id',auth()->user()->id);
         }
             
