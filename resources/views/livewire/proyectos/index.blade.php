@@ -78,7 +78,6 @@
                         wire:click="viewProject({{$proyecto->id}})">
                         <th scope="row" class="p-2 hover:bg-gray-200">{{$proyecto->proyecto}}</th>
                         <td>{{$proyecto->user->name ?? 'Usuario Eliminado'}}</td>
-                        <td>{{$proyecto->centro_costo}}</td>
                         <td>{{$proyecto->trabajo}}</td>
                         <td>{{$proyecto->prioridad}}</td>
                        
@@ -91,9 +90,7 @@
                                 <td class="text-red-500">{{date('d/m/Y',strtotime($proyecto->etapa->where('fecha_finalizacion',NULL)->min('fecha_corte')))}}</td>
                             @endif
                         
-                        <td>@if($proyecto->fecha_planteamiento){{date('d/m/Y',strtotime($proyecto->fecha_planteamiento))}}@endif</td>
-                        <td>{{$proyecto->recompensa}}</td>
-                        <td>{{$proyecto->escala}}</td>
+                        <td>{{$proyecto->fecha_planteamiento ? date('d/m/Y',strtotime($proyecto->fecha_planteamiento)) : ''}}</td>
                         <td>{{$proyecto->estado}}</td>
                     </tr>
                     @endforeach

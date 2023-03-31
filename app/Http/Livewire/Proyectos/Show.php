@@ -21,7 +21,8 @@ class Show extends Component
         return view('livewire.proyectos.show');
     }
 
-    public function mount($id){
+    public function mount($id)
+    {
         $this->tableProyecto = Proyecto::findorFail($id);
     }
 
@@ -29,25 +30,29 @@ class Show extends Component
     {
          $hola = $this->emit('seeNew');
     }
-    public function saveEtapa(){
+
+    public function saveEtapa()
+    {
         $this->emit('saveProject',$this->tableProyecto->id);
         $this->emit('saveEtapa');
         $this->emit('seeNew',false); 
     }
  
-    public function success($sms,$status){
+    public function success($sms,$status)
+    {
         
         $this->message = $sms ; 
         $this->status = $status ;
         $this->emit('successAlert'); 
     }
 
-    public function backTo(){
-        $this->emit('saveProject',$this->tableProyecto->id);
+    public function backTo()
+    {
         $this->emit('saveEtapa'); 
-
-        //$this->redirect(route('proyectos.index'));
+        $this->emit('saveProject',$this->tableProyecto->id);
+        
         $this->redirect(route('proyectos.index' , array('manager' => $this->tableProyecto->persona_id)));
+        
     }
 
 }

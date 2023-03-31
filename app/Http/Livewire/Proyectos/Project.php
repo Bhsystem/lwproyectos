@@ -32,9 +32,6 @@ class Project extends Component
 
     public $listeners = ['saveProject'];    
 
-    protected $validationAttributes = [
-        'proyecto' => 'es necesario el nombre de proyecto'
-    ];
     public function rules(){
 
 
@@ -96,9 +93,10 @@ class Project extends Component
         if($this->fecha_finalizacion && auth()->user()->id == 5){
             $this->estado = 'Finalizado';
         }
+        
         $validated = $this->validate();
-
         Proyecto::updateOrCreate(['id' => $id],$validated,[ 'estado' => $this->estado]);
+
     }
 
     public function setValues(){

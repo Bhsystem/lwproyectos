@@ -25,13 +25,10 @@ class Index extends Component
     public $columns = [
         'proyecto' => 'Proyecto',
         'persona_id' => 'Responsable',
-        'centro_costo' => 'Centro de Costo',
         'trabajo' => 'Trabajo',
         'prioridad' => 'Prioridad',
         'id' => 'Fecha de Corte',
         'fecha_planteamiento' => 'Fecha Planteamiento',
-        'recompensa' => 'Esfuerzo',
-        'bono' => 'Magnitud',
         'estado' => 'Estado',
     ];
 
