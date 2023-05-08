@@ -30,13 +30,13 @@
 </style>
 
     <div>
-            <div class="personal-logo">
+{{--             <div class="personal-logo">
 
                 <div class="child bg-gray-100" onclick="alert('puede servir')">
                     <img src="{{asset("storage/logoBH.png")}}" width=150>
                     <p>Ingresar</p>
                 </div>
-            </div>
+            </div> --}}
             
             
           <form method="POST" action="{{ route('login') }}">
