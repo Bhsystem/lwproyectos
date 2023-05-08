@@ -28,6 +28,7 @@
         color:black;
     }
 </style>
+
     <div>
             <div class="personal-logo">
 
@@ -37,13 +38,7 @@
                 </div>
             </div>
             
-
-            @if (session('status'))
-                <div class="mb-4 font-medium text-sm text-green-600">
-                    {{ session('status') }}
-                </div>
-            @endif
-
+            
           <form method="POST" action="{{ route('login') }}">
                 @csrf
     {{--   
@@ -78,8 +73,6 @@
                 --}}
             </form> 
         </div>
-
-
 <script src="https://code.jquery.com/jquery-3.6.1.min.js" integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
 <script type="text/javascript">
     $(document).ready(function(){
