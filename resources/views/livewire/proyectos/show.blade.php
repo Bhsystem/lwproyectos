@@ -24,10 +24,12 @@
             <div>
                 <p class="text-xl text-center">Etapas del Proyecto</p>
             </div>
-            
-            <div class="flex justify-end my-2 gap-2">
-                <button wire:click="saveEtapa()" class="btn bg-green-500 hover:bg-green-800 hover:text-white">Guardar</button>
-                <button wire:click="newEtapa()" wire:model="buttonNew" class="btn bg-blue-300 hover:bg-blue-500 hover:text-white">Agregar</button>    
+                      
+
+            <div class="flex justify-end my-2 gap-2" x-data="buttons">
+                <button x-show="open" wire:click="newEtapa()" @click="toggle" class="btn bg-blue-300 hover:bg-blue-500 hover:text-white">Agregar</button>  
+
+                <button wire:click="saveEtapa()" @click="toggle" class="btn bg-green-500 hover:bg-green-800 hover:text-white">Guardar</button>
             </div>
         </div>
         <livewire:proyectos.table :projectId="$tableProyecto->id" />
@@ -35,5 +37,14 @@
 </div>
 
 <script type="text/javascript">
-    
+    document.addEventListener('alpine:init',() =>{
+        Alpine.data('buttons',() => ({
+            open:true,
+
+            toggle(){
+                this.open = ! this.open
+            }
+
+        }))
+    })
 </script>
