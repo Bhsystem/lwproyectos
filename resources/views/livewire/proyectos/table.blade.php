@@ -10,7 +10,7 @@
         <tbody>
             <tr class="bg-emerald-200" x-data="{ open: @entangle('newRow') }" x-show="open">
                 <td>
-                    <select wire:model="eEstado.0" required class="lw-select w-full">
+                    <select wire:model="eEstado.0" required class="input-table">
                         <option>Tipo de Trabajo</option>
                         <optgroup label="Tipos de Trabajo">
                         @foreach($procesos as $pr)
@@ -19,21 +19,22 @@
                         </optgroup>     
                     </select>
                 </td>
-                <td><x-jet-input type="text" wire:model="eDescription.0" class="w-full"/></td>
-                <td><x-jet-input type="text" wire:model="ePendiente.0" wire:click="modalArea()" class="w-full"/></td>
-                <td><x-jet-input type="date" wire:model="eCorte.0" class="w-full"/></td>
-                <td><x-jet-input type="date" wire:model="ePlanteam.0" class="w-full"/></td>
+                <td><input type="text" wire:model="eDescription.0" class="input-table" /></td>
+                <td><input type="text" wire:model="ePendiente.0" wire:click="modalArea()"class="input-table" /></td>
+                <td><input type="date" wire:model="eCorte.0" class="input-table" /></td>
+                <td><input type="date" wire:model="ePlanteam.0" class="input-table" /></td>
                 <td>@if(auth()->user()->id == 5)
-                    <x-jet-input type="date" wire:model="efinalizacion.0" class="w-full"/>
+                    <input type="date" wire:model="efinalizacion.0" class="input-table" />
                     @endif
                 </td>
+                <td></td>
             </tr>
 
 
             @foreach($etapasTable as $etapas)
-             <tr>
+             <tr class="hover:bg-gray-200">
                 <td>
-                    <select wire:model="eEstado.{{ $etapas->id }}" :key="{{$etapas->id}}" class="lw-select">
+                    <select wire:model="eEstado.{{ $etapas->id }}" :key="{{$etapas->id}}" class="input-table">
                         <option>{{$etapas->estado ?? "Tipo de Trabajo"}}</option>
                         <optgroup label="Tipos de Trabajo">
                             @foreach($procesos as $pr)
@@ -43,19 +44,19 @@
                     </select>
                 </td>
                 <td>
-                    <x-jet-input type="text" wire:model="eDescription.{{ $etapas->id }}" class="w-full"/>
+                    <input type="text" wire:model="eDescription.{{ $etapas->id }}" class="input-table" />
+                </td>
+                <td> 
+                    <input type="text" wire:model.lazy="ePendiente.{{ $etapas->id }}" wire:click="modalArea({{$etapas->id}})" class="input-table" />
                 </td>
                 <td>
-                    <x-jet-input type="text" wire:model.lazy="ePendiente.{{ $etapas->id }}" wire:click="modalArea({{$etapas->id}})"  class="w-full"/>
+                    <input type="date" wire:model="eCorte.{{ $etapas->id }}" class="input-table" />
                 </td>
                 <td>
-                    <x-jet-input type="date" wire:model="eCorte.{{ $etapas->id }}"  class="w-full"/>
-                </td>
-                <td>
-                    <x-jet-input type="date" wire:model="ePlanteam.{{ $etapas->id }}"  class="w-full"/>
+                    <input type="date" wire:model="ePlanteam.{{ $etapas->id }}" class="input-table" />
                 </td>
                 <td>@if(auth()->user()->id == 5)
-                    <x-jet-input type="date" wire:model="efinalizacion.{{ $etapas->id }}"  class="w-full"/>
+                    <input type="date" wire:model="efinalizacion.{{ $etapas->id }}" class="input-table" />
                     @else
                         {{($etapas->fecha_finalizacion)? date('d/m/Y',strtotime($etapas->fecha_finalizacion)): '--'}}
                     @endif
