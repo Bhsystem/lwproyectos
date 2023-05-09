@@ -148,6 +148,7 @@ class Table extends Component
     }
 
     public function seeNew($state = true){
+        
         if($state === true){
             ($this->newRow === false) ? $this->newRow = true : $this->newRow = false ;
         }else{

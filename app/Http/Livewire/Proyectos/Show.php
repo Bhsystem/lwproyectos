@@ -13,7 +13,6 @@ class Show extends Component
     public $tableProyecto;
     public $message;
     public $status;
-    public $buttonNew  = 'Agregar';
 
     public $listeners = ['success'];
 
