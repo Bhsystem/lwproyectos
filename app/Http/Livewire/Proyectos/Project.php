@@ -4,12 +4,14 @@ namespace App\Http\Livewire\Proyectos;
 
 use App\Models\Desplegable;
 use App\Models\Proyecto;
+use App\Models\User;
 use Livewire\Component;
 
 class Project extends Component
 {   
     public $projectId;
-    public $tableProject; 
+    public $tableProject;
+    public $tableUser;
 
     public $centro_costo;
     public $proyecto;
@@ -20,6 +22,7 @@ class Project extends Component
     public $fecha_planteamiento;
     public $recompensa;
     public $estado;
+    public $persona_id;
 
     public $desplegableCentro;
     public $desplegablePrioridad;
@@ -51,6 +54,7 @@ class Project extends Component
                 'centro_costo'=> 'required',
                 'proyecto'=> 'required',
                 'prioridad'=> 'required',
+                'persona_id'=> 'required',
                 'trabajo'=> 'required',
                 'escala'=> 'required',
                 'fecha_planteamiento'=> 'required|date',
@@ -70,8 +74,10 @@ class Project extends Component
     public function mount()
     {
         $this->tableProject = Proyecto::find($this->projectId);
+        $this->tableUser = User::get();
         
         $this->estado = $this->tableProject->estado;
+        $this->persona_id = $this->tableProject->persona_id;
         $this->proyecto = $this->tableProject->proyecto;
         $this->prioridad = $this->tableProject->prioridad;
         $this->centro_costo = $this->tableProject->centro_costo;

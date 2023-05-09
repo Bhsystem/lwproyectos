@@ -1,10 +1,10 @@
 <div class="p-5">
-    <button wire:click="backTo()" class="btn bg-red-600 text-white  border-red-100 border-2 p-2 rounded-md hover:text-red-800 hover:bg-red-400 hover:shadow-2xl">Regresar</button>
+    <button wire:click="backTo()" onclick="history.back()" class="btn bg-red-600 text-white  border-red-100 border-2 p-2 rounded-md hover:text-red-800 hover:bg-red-400 hover:shadow-2xl">Regresar</button>
     <livewire:proyectos.project :projectId="$tableProyecto->id" />
 
     <hr>
     
-    
+    <div>{{session('search')}}</div>
     <div class="my-2 bg-white m-auto rounded p-5">
         
         <div class=" h-10">

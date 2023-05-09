@@ -5,6 +5,7 @@ namespace App\Http\Livewire\Proyectos;
 use App\Models\Etapa;
 use App\Models\Proyecto;
 use Livewire\Component;
+use Url;
 
 class Show extends Component
 {
@@ -17,7 +18,8 @@ class Show extends Component
     public $listeners = ['success'];
 
     public function render()
-    {
+    {   
+
         return view('livewire.proyectos.show');
     }
 
@@ -50,8 +52,7 @@ class Show extends Component
     {
         $this->emit('saveEtapa'); 
         $this->emit('saveProject',$this->tableProyecto->id);
-        
-        $this->redirect(route('proyectos.index' , array('manager' => $this->tableProyecto->persona_id)));
+       
         
     }
 

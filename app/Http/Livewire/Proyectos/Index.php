@@ -20,6 +20,8 @@ class Index extends Component
 
     protected $queryString = [
         'manager' => ['except' => ''],
+        'search',
+        'status',
     ];
 
     public $columns = [
@@ -33,20 +35,20 @@ class Index extends Component
     ];
 
     //listeners
-    protected $listeners = ['refreshComponent' => '$refresh', ''];
+    protected $listeners = ['refreshComponent' => '$refresh', 'filters'];
 
     //functions
     public function render()
     {   
-        
         $proyectos = Proyecto::orderBy($this->sortColumn, $this->sortOrder ?? 'ASC');
 
         if($this->search){
             $proyectos =  $this->searchFilter($proyectos);
-        }
+        }        
         if($this->status){
             $proyectos =  $this->searchStatus($proyectos);
         }
+
         if($this->manager){
             $proyectos->where('persona_id',$this->manager);
 
@@ -70,7 +72,6 @@ class Index extends Component
     {
         $this->redirect(route('proyectos.show',$id));
     }
-
 
     public function searchFilter($table)
     {

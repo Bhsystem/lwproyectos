@@ -3,12 +3,12 @@
 
     {{-- Barra de accion --}}
     <div x-data="{showContextMenu:false}">
-        
+
         <div class="flex justify-between shadow bg-gray-200 py-3 px-5 rounded rounded-t" @click.away="showContextMenu=false">
             <div>
                 <h1>Proyectos</h1>
             </div>
-
+            <div>{{session('search')}}</div>
             <div>
                 <label for="select">estado del Proyecto</label><br>
                 <select name="select" class="lw-select " wire:model="status">

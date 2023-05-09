@@ -17,6 +17,7 @@
                 <tr>
                     <th class="p-2">Proyecto</th>
                     <th class="p-2">Prioridad</th>
+                    <th class="p-2">Responsable</th>
                     <th class="p-2">Centro de costo</th>
                     <th class="p-2">Trabajo</th>
                     <th class="p-2">Escala</th>
@@ -42,6 +43,18 @@
                            </optgroup>
                        </select>
                     </td>
+                    
+                    <td class="p-2">
+                        <select class="lw-select" wire:model="persona_id" >
+                          <option value="{{$usuario ?? ''}}">Responsable</option>
+                          <optgroup label="Centro de Costo">
+                              @foreach($tableUser as $tu)
+                              <option value="{{$tu->id}}">{{$tu->name}}</option>
+                              @endforeach
+                          </optgroup>
+                        </select>
+                    </td>
+
                     <td class="p-2">
                         <select class="lw-select" wire:model="centro_costo" >
                           <option value=""></option>
@@ -51,7 +64,9 @@
                               @endforeach
                           </optgroup>
                         </select>
-                    </td>
+                    </td>                    
+
+
                     <td class="p-2">
                         <select class="lw-select" wire:model="trabajo">
                             <option></option>
