@@ -29,7 +29,7 @@
             <div class="flex justify-end my-2 gap-2" x-data="buttons">
                 <button x-show="open" wire:click="newEtapa()" @click="toggle" class="btn bg-blue-300 hover:bg-blue-500 hover:text-white">Agregar</button>  
 
-                <button wire:click="saveEtapa()" @click="toggle" class="btn bg-green-500 hover:bg-green-800 hover:text-white">Guardar</button>
+                <button wire:click="saveEtapa()" @click="toggleClose" class="btn bg-green-500 hover:bg-green-800 hover:text-white">Guardar</button>
             </div>
         </div>
         <livewire:proyectos.table :projectId="$tableProyecto->id" />
@@ -42,7 +42,15 @@
             open:true,
 
             toggle(){
-                this.open = ! this.open
+                this.open = ! this.open;
+                
+                console.log(this.open); 
+            },
+
+            toggleClose(){
+                this.open = true;
+                
+                console.log(this.open); 
             }
 
         }))

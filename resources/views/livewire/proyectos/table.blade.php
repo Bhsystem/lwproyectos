@@ -58,7 +58,7 @@
                 <td>@if(auth()->user()->id == 5)
                     <input type="date" wire:model="efinalizacion.{{ $etapas->id }}" class="input-table" />
                     @else
-                        {{($etapas->fecha_finalizacion)? date('d/m/Y',strtotime($etapas->fecha_finalizacion)): '--'}}
+                        <p class="input-table"> {{($etapas->fecha_finalizacion)? date('d/m/Y',strtotime($etapas->fecha_finalizacion)): '--'}} </p>
                     @endif
                 </td>
                 <td><button class="btn-delete" onclick="confirm('¿Está seguro?') || event.stopImmediatePropagation()" wire:click="deleteEtapa({{$etapas}})">Eliminar</button></td>
