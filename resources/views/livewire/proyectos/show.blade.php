@@ -19,17 +19,21 @@
 
         <div class="grid grid-cols-3 gap-4">
             <div class="w-full">
-                <button wire:click="saveEtapa()" class="btn bg-green-500 hover:bg-green-800 hover:text-white">Guardar</button>
                 
             </div>
             <div>
                 <p class="text-xl text-center">Etapas del Proyecto</p>
             </div>
             
-            <div class="flex justify-end my-2">
-                <button wire:click="newEtapa()" class="btn bg-blue-300 hover:bg-blue-500 hover:text-white">Agregar</button>    
+            <div class="flex justify-end my-2 gap-2">
+                <button wire:click="saveEtapa()" class="btn bg-green-500 hover:bg-green-800 hover:text-white">Guardar</button>
+                <button wire:click="newEtapa()" wire:model="buttonNew" class="btn bg-blue-300 hover:bg-blue-500 hover:text-white">Agregar</button>    
             </div>
         </div>
         <livewire:proyectos.table :projectId="$tableProyecto->id" />
     </div>
 </div>
+
+<script type="text/javascript">
+    
+</script>
