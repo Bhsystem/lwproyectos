@@ -58,9 +58,7 @@ class Save extends Component
         $validated = $this->validate();
         
         $project = Proyecto::updateOrCreate(['id'=>$id, 'persona_id' => $persona_id],$validated)->id;
-        
-        return $this->redirect(back());
-
+    
         if(!$id){
             return $this->redirect(route('proyectos.show',$project));
         }
