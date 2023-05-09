@@ -16,7 +16,7 @@
                    <option value=""></option>
                   <optgroup label="Centro de Costo">
                       @foreach($desplegableResponsables as $id => $responsable)
-                      <option value="{{$id}}">{{$responsable->name}}</option>
+                      <option value="{{$responsable->id}}">{{$responsable->name}}</option>
                       @endforeach
                   </optgroup>
                </select>
