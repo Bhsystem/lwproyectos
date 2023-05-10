@@ -4,7 +4,6 @@
 
     <hr>
     
-    <div>{{session('search')}}</div>
     <div class="my-2 bg-white m-auto rounded p-5">
         
         <div class=" h-10">

@@ -1,17 +1,14 @@
     <div class="my-5">
-        {{-- <x-jet-input-error for="estado"/> --}}
-        <ul>    
-            @error('estado') <li>{{$message}}</li> @enderror
-            @error('proyecto') <li>{{$message}}</li> @enderror
-            @error('prioridad') <li>{{$message}}</li> @enderror
-            @error('centro_costo') <li>{{$message}}</li> @enderror
-            @error('trabajo') <li>{{$message}}</li> @enderror
-            @error('escala') <li>{{$message}}</li> @enderror
-            @error('recompensa') <li>{{$message}}</li> @enderror
-            @error('fecha_planteamiento') <li>{{$message}}</li> @enderror
-            @error('fecha_finalizacion') <li>{{$message}}</li> @enderror
-        </ul>
-        
+        <x-jet-input-error for="estado"/>
+        <x-jet-input-error for="proyecto"/>
+        <x-jet-input-error for="prioridad"/>
+        <x-jet-input-error for="centro_costo"/>
+        <x-jet-input-error for="trabajo"/>
+        <x-jet-input-error for="escala"/>
+        <x-jet-input-error for="recompensa"/>
+        <x-jet-input-error for="fecha_planteamiento"/>
+        <x-jet-input-error for="fecha_finalizacion"/>
+
         <table class="table">
             <thead>
                 <tr>
