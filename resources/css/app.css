@@ -96,7 +96,7 @@
 
 
     .btn{ 
-        @apply p-3 rounded
+        @apply px-2 py-1 rounded
     }
 
     .btn-delete{

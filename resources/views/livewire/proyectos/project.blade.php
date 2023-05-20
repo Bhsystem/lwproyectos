@@ -1,13 +1,26 @@
     <div class="my-5">
-        <x-jet-input-error for="estado"/>
-        <x-jet-input-error for="proyecto"/>
-        <x-jet-input-error for="prioridad"/>
-        <x-jet-input-error for="centro_costo"/>
-        <x-jet-input-error for="trabajo"/>
-        <x-jet-input-error for="escala"/>
-        <x-jet-input-error for="recompensa"/>
-        <x-jet-input-error for="fecha_planteamiento"/>
-        <x-jet-input-error for="fecha_finalizacion"/>
+
+
+        @if(count($errors) > 0)
+            <div x-data="{ shown: false }"
+                 x-init="clearTimeout(2000); shown = true; timeout = setTimeout(() => { shown = false }, 2000);"
+                 x-show.transition.out.opacity.duration.1500ms="shown" 
+                 x-transition:leave.opacity.duration.1500ms>
+                <div class="fixed z-10 p-1 mt-1 bg-zinc-100 rounded-md">
+                    <h3 class="text-xl">
+                        <x-jet-input-error for="estado"/>
+                        <x-jet-input-error for="proyecto"/>
+                        <x-jet-input-error for="prioridad"/>
+                        <x-jet-input-error for="centro_costo"/>
+                        <x-jet-input-error for="trabajo"/>
+                        <x-jet-input-error for="escala"/>
+                        <x-jet-input-error for="recompensa"/>
+                        <x-jet-input-error for="fecha_planteamiento"/>
+                        <x-jet-input-error for="fecha_finalizacion"/>
+                    </h3>
+                </div>
+            </div>
+        @endif
 
         <table class="table">
             <thead>

@@ -1,12 +1,11 @@
-<div class="p-5">
-    <button wire:click="backTo()" onclick="history.back()" class="btn bg-red-600 text-white  border-red-100 border-2 p-2 rounded-md hover:text-red-800 hover:bg-red-400 hover:shadow-2xl">Regresar</button>
+<div class="px-5 py-2">
     <livewire:proyectos.project :projectId="$tableProyecto->id" />
 
     <hr>
     
     <div class="my-2 bg-white m-auto rounded p-5">
         
-        <div class=" h-10">
+        <div>
             <div class="alert alert-success alert-dismissible fade show text-center" role="alert">
                 <x-jet-action-message on="successAlert">
                     <div class=" flex justify-center box-action-message">
@@ -26,9 +25,9 @@
                       
 
             <div class="flex justify-end my-2 gap-2" x-data="buttons">
+                <button wire:click="backTo()" onclick="history.back()" class="btn bg-red-600 text-white  border-red-100 border-2 p-2 rounded-md hover:text-red-800 hover:bg-red-400 hover:shadow-2xl">Regresar</button>
+                <button wire:click="saveEtapa()" @click="toggleClose" class="btn bg-green-500 hover:bg-green-800 hover:text-white">Guardar</button>||
                 <button x-show="open" wire:click="newEtapa()" @click="toggle" class="btn bg-blue-300 hover:bg-blue-500 hover:text-white">Agregar</button>  
-
-                <button wire:click="saveEtapa()" @click="toggleClose" class="btn bg-green-500 hover:bg-green-800 hover:text-white">Guardar</button>
             </div>
         </div>
         <livewire:proyectos.table :projectId="$tableProyecto->id" />
