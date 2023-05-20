@@ -4,11 +4,11 @@
     {{-- Barra de accion --}}
     <div x-data="{showContextMenu:false}">
 
-        <div class="flex justify-between shadow bg-gray-200 py-3 px-5 rounded rounded-t" @click.away="showContextMenu=false">
+        <div class="flex justify-between items-end shadow bg-gray-200 py-3 px-5 rounded rounded-t" @click.away="showContextMenu=false">
             <div>
-                <h1>Proyectos</h1>
+                <h1 class="text-center font-bold text-2xl">Proyectos</h1>
             </div>
-            <div>{{session('search')}}</div>
+            {{--No se que es <div>{{session('search')}}</div> --}}
             <div>
                 <label for="select">estado del Proyecto</label><br>
                 <select name="select" class="lw-select " wire:model="status">
@@ -18,7 +18,7 @@
                     <option value="">Todos</option>
                 </select>
             </div>        
-            @if(auth()->user()->id == 5)
+            @if(auth()->user()->id == 1)
             <div>
                 <label for="select">Persona Responsable</label><br>
                 <select name="select" class="lw-select" wire:model="manager">
@@ -30,16 +30,17 @@
                 </select>
             </div>
             @endif
-            <div class="my-auto">
-                <a class="btn bg-blue-300 my-1 hover:bg-blue-500 hover:text-white" href="{{route('proyectos.create')}}">Crear Proyecto</a>
+            <div class="justify-end px-3 ">
+                <x-input-search type="text" wire:model="search" placeholder="Buscar" class="self-end "/>
+            </div>
+
+            <div>
+                <a class="btn bg-blue-300  hover:bg-blue-500 hover:text-white" href="{{route('proyectos.create')}}">Crear Proyecto</a>
             </div>
         </div>
 
         {{-- Filtro de Busqueda --}}
-            <div class="bg-white flex justify-end px-5 ">
-                <x-input-search type="text" wire:model="search" placeholder="Buscar" class="self-end "/>
-            </div>
-
+            
         {{--Contenedor de tabla--}}
        <div role="region" aria-labelledby="HeadersRow" tabindex="0" class="colheaders">
             <table class="w-full border-2 border-black">
