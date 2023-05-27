@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire\Proyectos;
 
+use App\Models\Compartido;
 use App\Models\Etapa;
 use App\Models\Proyecto;
 use Livewire\Component;
@@ -24,11 +25,12 @@ class Show extends Component
 
     public function mount($id)
     {
+        $this->setCompartidos($id);
         $this->tableProyecto = Proyecto::findorFail($id);
     }
 
     public function newEtapa()
-    {
+    {   
          $hola = $this->emit('seeNew');
     }
 
@@ -52,6 +54,10 @@ class Show extends Component
         $this->emit('saveEtapa'); 
         $this->emit('saveProject',$this->tableProyecto->id);
        
+    }
+
+        public function setCompartidos($id){
+        $this->compartidos = Compartido::where('proyecto_id',$id)->pluck('usuario_id');
         
     }
 

@@ -18,7 +18,7 @@
                     <option value="">Todos</option>
                 </select>
             </div>        
-            @if(auth()->user()->id == 1)
+            @if(auth()->user()->id == 5)
             <div>
                 <label for="select">Persona Responsable</label><br>
                 <select name="select" class="lw-select" wire:model="manager">
@@ -42,12 +42,12 @@
         {{-- Filtro de Busqueda --}}
             
         {{--Contenedor de tabla--}}
-       <div role="region" aria-labelledby="HeadersRow" tabindex="0" class="colheaders">
-            <table class="w-full border-2 border-black">
-                <thead class="w-90">
-                    <tr class="py-2 bg-black text-white text-left cursor-alias">
+       <div class="w-60 md:w-full table-responsive">
+            <table class="table table-simetric">
+                <thead>
+                    <tr class="cursor-alias">
                         @foreach($columns as $key => $column)
-                            <th class="py-2 w-1" wire:click="sort('{{$key}}')" >
+                            <th wire:click="sort('{{$key}}')" >
                                 <div class="flex gap-1"> 
                                 {{$column}}
 
@@ -68,16 +68,16 @@
                         @endforeach
                     </tr>
                 </thead>
-                <tbody class="bg-white overflow-auto">
+                <tbody>
                     @foreach($proyectos as $proyecto)
-                    <tr class="hover:bg-gray-200 hover:font-bold cursor-pointer" 
+                    <tr class="hover:bg-gray-200 hover:font-bold cursor-pointer @if($proyecto->persona_id != auth::user()->id) bg-blue-200 @endif" 
                         x-on:contextmenu="$event.preventDefault();
                                           contextMenuPosition(); 
-                                          $wire.emit('getTable',{{$proyecto}})
+                                          $wire.emit('getTable',{{$proyecto->id}})
                                           showContextMenu=true;"  
-                        @click.prevent="showContextMenu=false" 
-                        wire:click="viewProject({{$proyecto->id}})">
-                        <th scope="row" class="p-2 hover:bg-gray-200">{{$proyecto->proyecto}}</th>
+                        @click.prevent="showContextMenu=false" wire:click="viewProject({{$proyecto->id}})">
+
+                        <td class="hover:bg-gray-200 font-bold">{{$proyecto->proyecto}}</td>
                         <td>{{$proyecto->user->name ?? 'Usuario Eliminado'}}</td>
                         <td>{{$proyecto->trabajo}}</td>
                         <td>{{$proyecto->prioridad}}</td>
@@ -92,7 +92,7 @@
                             @endif
                         
                         <td>{{$proyecto->fecha_planteamiento ? date('d/m/Y',strtotime($proyecto->fecha_planteamiento)) : ''}}</td>
-                        <td>{{$proyecto->estado}}</td>
+                        <td>@if($proyecto->persona_id != auth::user()->id) Compartido @else {{$proyecto->estado}} @endif</td>
                     </tr>
                     @endforeach
                 </tbody>

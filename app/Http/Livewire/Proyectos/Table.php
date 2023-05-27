@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire\Proyectos;
 
+use App\Models\Compartido;
 use App\Models\Etapa;
 use App\Models\Proyecto;
 use Livewire\Component;
@@ -11,6 +12,7 @@ class Table extends Component
 //ordenamiento de columnas
     public $sortColumn = 'id';
     public $sortOrder;
+    public $color = '';
 
 //modal de pendiente a realizar
     public $elementId;
@@ -60,13 +62,13 @@ class Table extends Component
     ];
 
     public $rows = [
-        'estado' => 'Procesos',
-        'descripcion' => 'Descripción de la Tarea',
-        'pendiente' => 'Pendiente por realizar',
-        'fecha_corte' => 'Fecha corte',
-        'fecha_planteamiento' => 'Fecha planteamiento',
-        'fecha_finalizacion' => 'Fecha finalizacion',
-        'delete' => 'Eliminar'
+        'estado' => ['Procesos', 'w-2/12'],
+        'descripcion' => ['Descripción de la Tarea','w-3/12'],
+        'pendiente' => ['Pendiente por realizar','w-3/12'],
+        'fecha_corte' => ['Fecha corte','w-1/12'],
+        'fecha_planteamiento' => ['Fecha planteamiento','w-1/12'],
+        'fecha_finalizacion' => ['Fecha finalizacion','w-1/12'],
+        'delete' => ['Eliminar','w-1/12']
     ];
 
     public function render()
@@ -120,6 +122,7 @@ class Table extends Component
                 'fecha_corte' => (count($this->eCorte) === 0 || $this->eCorte[$id] === '' ) ? null: $this->eCorte[$id],
                 'fecha_planteamiento' => (count($this->ePlanteam) === 0 || $this->ePlanteam[$id] === '' ) ? null :$this->ePlanteam[$id],
                 'fecha_finalizacion' => (count($this->efinalizacion) === 0 || $this->efinalizacion[$id] === '' ) ? null :$this->efinalizacion[$id],
+                'trabajo' => \Auth::user()->id
             ]); 
         }
         $this->emit('success','Guardado con exito','update');
@@ -160,6 +163,22 @@ class Table extends Component
     {
         $this->sortColumn = $column;
         $this->sortOrder =  $this->sortOrder == 'desc' ? 'asc' : 'desc';
+    }
+
+    public function setColor($id){
+        unset($this->color);
+        $this->compartidos = Compartido::where('proyecto_id',$this->projectId)->pluck('usuario_id');
+        $compartidos = array();
+        foreach($this->compartidos as $c){
+            $compartidos[] = $c;
+            
+            $numero = array_search($id, $compartidos);
+        
+        }
+
+        return $this->color = 'color'.$numero;
+        
+
     }
 }      
 

@@ -17,7 +17,11 @@
 
         <div class="grid grid-cols-3 gap-4">
             <div class="w-full">
-                
+                @foreach($compartidos as $key => $c)
+                    <div class="color{{$key}}">
+                        {{$key}} \\ {{$c}}<hr>
+                    </div>
+                @endforeach
             </div>
             <div>
                 <p class="text-xl text-center">Etapas del Proyecto</p>

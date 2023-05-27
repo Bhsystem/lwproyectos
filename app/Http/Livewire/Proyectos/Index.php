@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire\Proyectos;
 
+use App\Models\Compartido;
 use App\Models\Proyecto;
 use App\Models\User;
 use Livewire\Component;
@@ -41,6 +42,11 @@ class Index extends Component
     public function render()
     {   
         $proyectos = Proyecto::orderBy($this->sortColumn, $this->sortOrder ?? 'ASC');
+        
+        $shares = Compartido::where('usuario_id',\Auth::user()->id)->pluck('proyecto_id')->all();
+
+
+        // dd($proyectos);
 
         if($this->search){
             $proyectos =  $this->searchFilter($proyectos);
@@ -54,7 +60,7 @@ class Index extends Component
 
         }
         if(Auth()->user()->id != 5){
-            $proyectos->where('persona_id',auth()->user()->id);
+            $proyectos->whereIn('id',$shares)->orwhere('persona_id',auth()->user()->id);
         }
             
         $proyectos = $proyectos->get();
