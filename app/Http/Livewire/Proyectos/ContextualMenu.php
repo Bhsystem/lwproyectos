@@ -20,18 +20,18 @@ class ContextualMenu extends Component
     public function getTable($tableProject)
     {
         $this->tableProject = $tableProject;
-        $this->link = route('proyectos.show',$tableProject['id']);
+        $this->link = route('proyectos.show',$tableProject);
     }
 
     public function deleteProject()
     {   
-        Proyecto::find($this->tableProject['id'])->delete();
+        Proyecto::find($this->tableProject)->delete();
         $this->emit('refreshComponent');
         
     }
 
     public function delayProject(){
-        $table = Proyecto::find($this->tableProject['id'])->update(['estado'=>'Aplazado']);
+        $table = Proyecto::find($this->tableProject)->update(['estado'=>'Aplazado']);
         $this->emit('refreshComponent');
     }
 }
