@@ -12,7 +12,7 @@ class Table extends Component
 //ordenamiento de columnas
     public $sortColumn = 'id';
     public $sortOrder;
-    public $color = '';
+    public $color = [];
 
 //modal de pendiente a realizar
     public $elementId;
@@ -166,17 +166,18 @@ class Table extends Component
     }
 
     public function setColor($id){
-        unset($this->color);
         $this->compartidos = Compartido::where('proyecto_id',$this->projectId)->pluck('usuario_id');
+        
         $compartidos = array();
+        
         foreach($this->compartidos as $c){
             $compartidos[] = $c;
             
-            $numero = array_search($id, $compartidos);
+        $numero = array_search($id, $compartidos);
         
         }
-
-        return $this->color = 'color'.$numero;
+        
+        return $this->color = $compartidos;
         
 
     }

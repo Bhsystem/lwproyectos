@@ -7,7 +7,7 @@
                @endforeach
             </tr>
         </thead>
-        <tbody class="max-h-[31rem]">
+        <tbody class="max-h-[31rem]" x-data>
             {{-- Seccion para agergar nuevo elemento --}}
             <tr class="bg-emerald-200 " x-data="{ open: @entangle('newRow') }" x-show="open">
                 <td class="w-2/12 py-2">
@@ -33,8 +33,7 @@
 
             {{-- Seccion de los elementos existentes  --}}
             @foreach($etapasTable as $etapas)
-             <tr wire:model="setColor({{$etapas->trabajo}})" class="hover:bg-gray-200 {{$color}}">
-                <td>{{$etapas->trabajo}}</td>
+             <tr  x-init="$wire.setColor({{$etapas->trabajo}}), console.log('{{$etapas->trabajo}}')" class="hover:bg-gray-200 color{{array_search($etapas->trabajo, $color)}}">
                 <td class="w-2/12">
                     <select wire:model="eEstado.{{ $etapas->id }}" :key="{{$etapas->id}}" class="input-table">
                         <option>{{$etapas->estado ?? "Tipo de Trabajo"}}</option>
@@ -76,3 +75,5 @@
         </div>
     </div>
 </div>  
+
+

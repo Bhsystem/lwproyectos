@@ -16,11 +16,13 @@
         </div> 
 
         <div class="grid grid-cols-3 gap-4">
-            <div class="w-full">
+            <div class="flex gap-2">
                 @foreach($compartidos as $key => $c)
-                    <div class="color{{$key}}">
-                        {{$key}} \\ {{$c}}<hr>
+                    <div class="flex">
+                        <div class="color{{$key}} w-5 h-5 border-2  rounded" ></div>
+                        <div>Nombre</div>
                     </div>
+                    
                 @endforeach
             </div>
             <div>

@@ -61,22 +61,22 @@
 
 
     .color0{
-        background: blue;
+        @apply bg-blue-200
     }    
 
     .color1{
-        background: green;
+        @apply bg-green-200
     }    
     .color2{
-        background: blue;
+        @apply bg-lime-200
     }    
     .color3{
-        background: blue;
+        @apply bg-cyan-200
     }    
 
     .color4{
-        background: blue;
+        @apply bg-yellow-200
     }    
     .color5{
-        background: blue;
+        @apply bg-emerald-200
     }
