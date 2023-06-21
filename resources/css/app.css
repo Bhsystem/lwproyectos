@@ -52,11 +52,11 @@
     }
 
     .btn-delete{
-        @apply bg-red-300 w-full p-3 rounded hover:bg-red-500 hover:text-white
+        @apply bg-red-300 w-full px-3 py-2 rounded hover:bg-red-500 hover:text-white
     }
 
     .input-table{
-      @apply border-0 border-b rounded-lg w-full focus:border-blue-200 focus:border-0
+      @apply border-0 border-b-4 rounded-lg w-full focus:border-blue-200 focus:border-0
     }
 
 
@@ -79,4 +79,25 @@
     }    
     .color5{
         @apply bg-emerald-200
+    }    
+
+    .border0 input, .border0 select{
+        @apply border-blue-200
+    }    
+
+    .border1 input, .border1 select{
+        @apply border-green-200
+    }    
+    .border2 input, .border2 select{
+        @apply border-lime-200
+    }    
+    .border3 input, .border3 select{
+        @apply border-cyan-200
+    }    
+
+    .border4 input, .border4 select{
+        @apply border-yellow-200
+    }    
+    .border5 input, .border5 select{
+        @apply border-emerald-200
     }

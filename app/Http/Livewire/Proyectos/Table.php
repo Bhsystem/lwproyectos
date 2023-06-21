@@ -28,6 +28,7 @@ class Table extends Component
     public $eCorte = [];
     public $ePlanteam = [];
     public $efinalizacion = [];
+    public $trabajo = [];
 //listeners
     public $listeners = ['saveEtapa','deleteEtapa','seeNew'];
 
@@ -102,6 +103,7 @@ class Table extends Component
             $this->eCorte[$te->id] = $te->fecha_corte;
             $this->ePlanteam[$te->id] = $te->fecha_planteamiento;
             $this->efinalizacion[$te->id] = $te->fecha_finalizacion;
+            $this->trabajo[$te->id] = $te->trabajo;
         } 
 
         $this->resetCero(); 
@@ -122,7 +124,7 @@ class Table extends Component
                 'fecha_corte' => (count($this->eCorte) === 0 || $this->eCorte[$id] === '' ) ? null: $this->eCorte[$id],
                 'fecha_planteamiento' => (count($this->ePlanteam) === 0 || $this->ePlanteam[$id] === '' ) ? null :$this->ePlanteam[$id],
                 'fecha_finalizacion' => (count($this->efinalizacion) === 0 || $this->efinalizacion[$id] === '' ) ? null :$this->efinalizacion[$id],
-                'trabajo' => \Auth::user()->id
+                'trabajo' => $this->trabajo[$id] ?? \Auth::user()->id,
             ]); 
         }
         $this->emit('success','Guardado con exito','update');

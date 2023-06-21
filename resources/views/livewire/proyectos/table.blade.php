@@ -33,7 +33,7 @@
 
             {{-- Seccion de los elementos existentes  --}}
             @foreach($etapasTable as $etapas)
-             <tr  x-init="$wire.setColor({{$etapas->trabajo}}), console.log('{{$etapas->trabajo}}')" class="hover:bg-gray-200 color{{array_search($etapas->trabajo, $color)}}">
+             <tr  x-init="$wire.setColor({{$etapas->trabajo}})" class="hover:bg-gray-200 border{{array_search($etapas->trabajo, $color)}}">
                 <td class="w-2/12">
                     <select wire:model="eEstado.{{ $etapas->id }}" :key="{{$etapas->id}}" class="input-table">
                         <option>{{$etapas->estado ?? "Tipo de Trabajo"}}</option>

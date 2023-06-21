@@ -70,7 +70,7 @@
                 </thead>
                 <tbody>
                     @foreach($proyectos as $proyecto)
-                    <tr class="hover:bg-gray-200 hover:font-bold cursor-pointer @if($proyecto->persona_id != auth::user()->id) bg-blue-200 @endif" 
+                    <tr class="hover:bg-gray-200 hover:font-bold cursor-pointer @if($proyecto->persona_id == auth::user()->id || auth::user()->id == 5) asd @else bg-blue-200 @endif" 
                         x-on:contextmenu="$event.preventDefault();
                                           contextMenuPosition(); 
                                           $wire.emit('getTable',{{$proyecto->id}})
@@ -82,8 +82,7 @@
                         <td>{{$proyecto->trabajo}}</td>
                         <td>{{$proyecto->prioridad}}</td>
                        
-                            @if($proyecto->etapa->where('fecha_finalizacion',NULL)->min('fecha_corte') > date('Y-m-d'))
-                             
+                            @if($proyecto->etapa->where('fecha_finalizacion',NULL)->min('fecha_corte') > date('Y-m-d'))  
                                <td>{{date('d/m/Y',strtotime($proyecto->etapa->where('fecha_finalizacion',NULL)->min('fecha_corte')))}}</td>
                             @elseif(is_null($proyecto->etapa->where('fecha_finalizacion',NULL)->min('fecha_corte')))
                                 <td>sin Tareas pendientes</td>
@@ -92,7 +91,7 @@
                             @endif
                         
                         <td>{{$proyecto->fecha_planteamiento ? date('d/m/Y',strtotime($proyecto->fecha_planteamiento)) : ''}}</td>
-                        <td>@if($proyecto->persona_id != auth::user()->id) Compartido @else {{$proyecto->estado}} @endif</td>
+                        <td>@if($proyecto->persona_id == auth::user()->id || auth::user()->id == 5) {{$proyecto->estado}}  @else  Compartido @endif</td>
                     </tr>
                     @endforeach
                 </tbody>

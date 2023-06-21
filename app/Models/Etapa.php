@@ -14,5 +14,4 @@ class Etapa extends Model
     protected $table ='proyectos_etapa';
 
     protected $guarded = ['id'];
-
 }
