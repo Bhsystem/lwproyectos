@@ -4,6 +4,7 @@ namespace App\Http\Livewire\Proyectos;
 
 use App\Models\Compartido;
 use App\Models\Etapa;
+use App\Models\Persona;
 use App\Models\Proyecto;
 use Livewire\Component;
 use Url;
@@ -14,12 +15,13 @@ class Show extends Component
     public $tableProyecto;
     public $message;
     public $status;
+    public $personas;
 
     public $listeners = ['success'];
 
     public function render()
     {   
-
+        $this->personas = Persona::get();
         return view('livewire.proyectos.show');
     }
 
@@ -56,9 +58,9 @@ class Show extends Component
        
     }
 
-        public function setCompartidos($id){
-        $this->compartidos = Compartido::where('proyecto_id',$id)->pluck('usuario_id');
-        
+    public function setCompartidos($id)
+    {
+        $this->compartidos = Compartido::where('proyecto_id',$id)->with('user')->get();   
     }
 
 }

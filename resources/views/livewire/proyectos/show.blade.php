@@ -20,7 +20,7 @@
                 @foreach($compartidos as $key => $c)
                     <div class="flex">
                         <div class="color{{$key}} w-5 h-5 border-2  rounded" ></div>
-                        <div>Nombre</div>
+                        <div>{{($c->user->name ?? 'Usuario Eliminado')}}</div>
                     </div>
                     
                 @endforeach
