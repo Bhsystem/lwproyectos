@@ -165,21 +165,17 @@ class Table extends Component
         $this->sortOrder =  $this->sortOrder == 'desc' ? 'asc' : 'desc';
     }
 
-    public function setColor($id){
+    public function setColor($id = 0){
         $this->compartidos = Compartido::where('proyecto_id',$this->projectId)->pluck('usuario_id');
         
         $compartidos = array();
         
         foreach($this->compartidos as $c){
             $compartidos[] = $c;
-            
-        $numero = array_search($id, $compartidos);
-        
+            $numero = array_search($id, $compartidos);
         }
-        
-        return $this->color = $compartidos;
-        
 
+        return $this->color = $compartidos;
     }
 }      
 
