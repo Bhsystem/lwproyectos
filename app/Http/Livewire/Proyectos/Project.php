@@ -48,6 +48,7 @@ class Project extends Component
                 'fecha_planteamiento'=> 'required|date',
                 'fecha_finalizacion'=> 'nullable|date',
                 'recompensa'=> 'required', 
+                'estado'=> 'nullable', 
             ];   
         }else{
             return [
