@@ -45,7 +45,7 @@ class Index extends Component
         
         $shares = Compartido::where('usuario_id',\Auth::user()->id)->pluck('proyecto_id')->all();
         
-        if(Auth()->user()->id != 1){
+        if(Auth()->user()->id != 5){
             $proyectos = $proyectos->where('persona_id',auth()->user()->id)->orwhereIn('id',$shares);    
         }
         
