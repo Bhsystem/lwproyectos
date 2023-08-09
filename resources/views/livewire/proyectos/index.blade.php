@@ -15,7 +15,7 @@
                     <option>Activo</option>
                     <option>Aplazado</option>
                     <option>Finalizado</option>
-                    <option value="">Todos</option>
+                    <option>Todos</option>
                 </select>
             </div>        
             @if(auth()->user()->id == 5)

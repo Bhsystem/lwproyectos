@@ -41,7 +41,8 @@ class Index extends Component
     //functions
     public function render()
     {   
-        $proyectos = Proyecto::orderBy($this->sortColumn, $this->sortOrder ?? 'ASC')->where('estado',$this->status);
+        $proyectos = Proyecto::orderBy($this->sortColumn, $this->sortOrder ?? 'ASC');
+        $proyectos =  $this->searchStatus($proyectos);
         
         $shares = Compartido::where('usuario_id',\Auth::user()->id)->pluck('proyecto_id')->all();
         
@@ -81,6 +82,7 @@ class Index extends Component
         $this->redirect(route('proyectos.show',$id));
     }
 
+
     public function searchFilter($table)
     {
         return $table->where(function($query){
@@ -93,8 +95,9 @@ class Index extends Component
     }    
     
     public function searchStatus($table)
-    {
-        return $table->where('estado',$this->status);
+    {   
+        ($this->status == 'Todos') ? $table = $table : $table = $table->where('estado',$this->status);
+        return $table;
     }
 
     public function sort($column)
