@@ -41,16 +41,18 @@ class Index extends Component
     //functions
     public function render()
     {   
-        $proyectos = Proyecto::orderBy($this->sortColumn, $this->sortOrder ?? 'ASC');
+        $proyectos = Proyecto::orderBy($this->sortColumn, $this->sortOrder ?? 'ASC')->where('estado',$this->status);
         
         $shares = Compartido::where('usuario_id',\Auth::user()->id)->pluck('proyecto_id')->all();
-
-
-        // dd($proyectos);
-
+        
+        if(Auth()->user()->id != 1){
+            $proyectos = $proyectos->where('persona_id',auth()->user()->id)->orwhereIn('id',$shares);    
+        }
+        
         if($this->search){
             $proyectos =  $this->searchFilter($proyectos);
         }        
+        
         if($this->status){
             $proyectos =  $this->searchStatus($proyectos);
         }
@@ -59,12 +61,12 @@ class Index extends Component
             $proyectos->where('persona_id',$this->manager);
 
         }
-        if(Auth()->user()->id != 5){
-            $proyectos->whereIn('id',$shares)->orwhere('persona_id',auth()->user()->id);
-        }
-            
-        $proyectos = $proyectos->get();
+        
 
+
+        $proyectos = $proyectos->get();
+        //$proyectos = $proyectos->toSql();
+        // dd($proyectos);
         return view('livewire.proyectos.index', compact('proyectos'));
     }
 
