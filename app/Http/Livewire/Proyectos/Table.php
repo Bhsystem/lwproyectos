@@ -63,13 +63,13 @@ class Table extends Component
     ];
 
     public $rows = [
-        'estado' => ['Procesos', 'w-2/12'],
-        'descripcion' => ['Descripción de la Tarea','w-3/12'],
-        'pendiente' => ['Pendiente por realizar','w-3/12'],
-        'fecha_corte' => ['Fecha corte','w-1/12'],
-        'fecha_planteamiento' => ['Fecha planteamiento','w-1/12'],
-        'fecha_finalizacion' => ['Fecha finalizacion','w-1/12'],
-        'delete' => ['Eliminar','w-1/12']
+        'estado' => ['Procesos', 'w-1/6'],
+        'descripcion' => ['Descripción de la Tarea','w'],
+        'pendiente' => ['Pendiente por realizar','w'],
+        'fecha_corte' => ['Fecha corte','w'],
+        'fecha_planteamiento' => ['Fecha planteamiento','w'],
+        'fecha_finalizacion' => ['Fecha finalizacion','w'],
+
     ];
 
     public function render()
