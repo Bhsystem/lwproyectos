@@ -4,7 +4,7 @@
             <h1 class="text-2xl text-center font-bold">Gestion de Proyectos</h1>
             <p class="m-5 text-justify ">Plataforma desarrollada con el fin de que pueda Gestionar las tareas pendientes de sus diferentes proyectos, facilitando el seguimiento y el complimiento de objetivos, centralizando la información de los distintos proyectos liderados por el usuario, las fases, las tareas pendientes por realizar y llevando el control de tiempos, esfuerzo y recompensas, centralizando la información de cada proyecto para facilitar así su seguimiento y constante evolución</p>
        </div>
-            <x-logo width='10%'/>
+            {{-- <x-logo width='10%'/> --}}
     </div>
     <hr>
     <div class="grid grid-cols-2 my-5" id="menu">

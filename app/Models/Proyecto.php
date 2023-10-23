@@ -19,4 +19,8 @@ class Proyecto extends Model
     public function user(){
         return $this->belongsto(User::class,'persona_id');
     }
+
+    public function compartido(){
+        return $this->hasMany(Compartido::class);
+    }
 }

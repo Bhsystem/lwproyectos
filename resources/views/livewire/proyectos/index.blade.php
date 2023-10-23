@@ -30,6 +30,7 @@
                 </select>
             </div>
             @endif
+
             <div class="justify-end px-3 ">
                 <x-input-search type="text" wire:model="search" placeholder="Buscar" class="self-end "/>
             </div>
@@ -43,6 +44,7 @@
             
         {{--Contenedor de tabla--}}
        <div class="w-60 md:w-full table-responsive">
+            <livewire:proyectos.contextual-menu :managers="$this->managers"/>
             <table class="table table-simetric">
                 <thead>
                     <tr class="cursor-alias">
@@ -91,12 +93,14 @@
                             @endif
                         
                         <td>{{$proyecto->fecha_planteamiento ? date('d/m/Y',strtotime($proyecto->fecha_planteamiento)) : ''}}</td>
-                        <td>@if($proyecto->persona_id == auth::user()->id || auth::user()->id == 5) {{$proyecto->estado}}  @else  Compartido @endif</td>
+                        <td class="flex justify-between">
+                            {{($proyecto->persona_id == auth::user()->id || auth::user()->id == 5) ? $proyecto->estado : 'Compartido' }} 
+                            @if(count($proyecto->compartido) > 0) <x-icon-shared/> @endif
+                       </td>
                     </tr>
                     @endforeach
                 </tbody>
             </table>
         </div>
-        <livewire:proyectos.contextual-menu/>
     </div>
 </div>
