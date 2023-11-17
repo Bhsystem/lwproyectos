@@ -49,9 +49,9 @@
                 <thead>
                     <tr class="cursor-alias">
                         @foreach($columns as $key => $column)
-                            <th wire:click="sort('{{$key}}')" >
-                                <div class="flex gap-1"> 
-                                {{$column}}
+                            <th wire:click="sort('{{$column[0]}}')">
+                                <div class="flex gap-1 "> 
+                                {{$column[1]}} 
 
                                 @if($this->sortOrder == 'asc' && $this->sortColumn == $key)
                                     <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-arrow-down-circle-fill" viewBox="0 0 16 16">
@@ -67,36 +67,39 @@
                                                         
                                 </div>
                             </th>       
+
                         @endforeach
                     </tr>
                 </thead>
                 <tbody>
                     @foreach($proyectos as $proyecto)
-                    <tr class="hover:bg-gray-200 hover:font-bold cursor-pointer @if($proyecto->persona_id == auth::user()->id || auth::user()->id == 5) asd @else bg-blue-200 @endif" 
+                    <tr class="hover:bg-gray-200 hover:font-bold cursor-pointer border-b-2 @if($proyecto->persona_id == auth::user()->id || auth::user()->id == 5) asd @else bg-blue-200 bg-opacity-25 @endif" 
                         x-on:contextmenu="$event.preventDefault();
                                           contextMenuPosition(); 
                                           $wire.emit('getTable',{{$proyecto->id}})
                                           showContextMenu=true;"  
                         @click.prevent="showContextMenu=false" wire:click="viewProject({{$proyecto->id}})">
 
-                        <td class="hover:bg-gray-200 font-bold">{{$proyecto->proyecto}}</td>
-                        <td>{{$proyecto->user->name ?? 'Usuario Eliminado'}}</td>
-                        <td>{{$proyecto->trabajo}}</td>
-                        <td>{{$proyecto->prioridad}}</td>
-                       
-                            @if($proyecto->etapa->where('fecha_finalizacion',NULL)->min('fecha_corte') > date('Y-m-d'))  
-                               <td>{{date('d/m/Y',strtotime($proyecto->etapa->where('fecha_finalizacion',NULL)->min('fecha_corte')))}}</td>
-                            @elseif(is_null($proyecto->etapa->where('fecha_finalizacion',NULL)->min('fecha_corte')))
-                                <td>sin Tareas pendientes</td>
-                            @else
-                                <td class="text-red-500">{{date('d/m/Y',strtotime($proyecto->etapa->where('fecha_finalizacion',NULL)->min('fecha_corte')))}}</td>
-                            @endif
-                        
-                        <td>{{$proyecto->fecha_planteamiento ? date('d/m/Y',strtotime($proyecto->fecha_planteamiento)) : ''}}</td>
-                        <td class="flex justify-between">
-                            {{($proyecto->persona_id == auth::user()->id || auth::user()->id == 5) ? $proyecto->estado : 'Compartido' }} 
-                            @if(count($proyecto->compartido) > 0) <x-icon-shared/> @endif
-                       </td>
+                        <td class="hover:bg-gray-200 font-bold"><div class="truncate">{{$proyecto->proyecto}}</div></td>
+                        <td><div class="truncate">{{$proyecto->user->name ?? 'Usuario Eliminado'}}</div></td>
+                        <td><div class="truncate">{{$proyecto->trabajo}}</div></td>
+                        <td><div class="truncate">{{$proyecto->prioridad}}</div></td>
+                        <td>
+                            <div class="truncate">
+                                {!!$proyecto->etapa->where('fecha_finalizacion',NULL)->min('fecha_corte') 
+                                    ? ( $proyecto->etapa->where('fecha_finalizacion',NULL)->min('fecha_corte')) > date('Y-m-d') 
+                                        ? date('d/m/Y',strtotime($proyecto->etapa->where('fecha_finalizacion',NULL)->min('fecha_corte'))) 
+                                        : '<p class="text-red-800">'.date('d/m/Y',strtotime($proyecto->etapa->where('fecha_finalizacion',NULL)->min('fecha_corte'))).'</p>'
+                                    : 'Sin Tarea Pendiente' !!}    
+                            </div>
+                        </td>
+                        <td><div class="truncate">{{$proyecto->fecha_planteamiento ? date('d/m/Y',strtotime($proyecto->fecha_planteamiento)) : ''}}<div></td>
+                        <td>
+                            <div class="flex justify-between">
+                                {{($proyecto->persona_id == auth::user()->id || auth::user()->id == 5) ? $proyecto->estado : 'Compartido' }} 
+                                @if(count($proyecto->compartido) > 0) <x-icon-shared/> @endif
+                            </div>
+                        </td>
                     </tr>
                     @endforeach
                 </tbody>
