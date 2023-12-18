@@ -7,29 +7,12 @@
         @apply border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm w-full
     }
 
-    .table{ @apply w-full border-2 border-black;}
+    .table{
+        @apply w-full border-2 border-black;
+    }
 
     .table thead {@apply bg-black text-white text-left;}
 
-    .table, td{  
-      border: 1px solid #ddd;
-      text-align: left;
-    }
-
-    .table {
-      border-collapse: collapse;
-      width: 100%;
-    }
-
-    .table td > .truncate{
-      width: auto;
-      min-width: 0;
-      max-width: 200px;
-      display: inline-block;
-      overflow: hidden;
-      text-overflow: ellipsis;
-      white-space: nowrap;
-    }
 
 
     .table-responsive{
@@ -44,12 +27,14 @@
         @apply overflow-y-scroll  flex flex-col justify-between w-full;
     }
 
-    .table-simetric td, .table-simetric th {
+    .table-simetric th, .table-simetric td {
         @apply w-1/5
     }
     .table-responsive th , .table-responsive td  {
+
         @apply px-3 py-1
     }
+
 
 
     @media (max-width: 700px){
@@ -57,7 +42,6 @@
             height: 60vh;
         }   
     }
-
     .table-responsive tbody tr{
         @apply flex w-full cursor-pointer
     }
@@ -72,7 +56,7 @@
     }
 
     .input-table{
-      @apply border-0 border-b-2 w-full focus:border-blue-200 focus:border-0
+      @apply border-0 border-b-4 rounded-lg w-full focus:border-blue-200 focus:border-0
     }
 
 
@@ -117,16 +101,3 @@
     .border5 input, .border5 select{
         @apply border-emerald-200
     }
-
-
-
-/* Botones   */
-.btn-danger{
-    @apply btn border-red-800 border-2 p-1 rounded-md text-red-800 hover:text-white hover:bg-red-800 hover:shadow-2xl
-}
-.btn-apply{
-    @apply btn hover:bg-green-800 border-2 border-green-800 text-green-800 hover:text-white
-}
-.btn-success{
-    @apply btn hover:bg-blue-400 border-2 border-blue-400 text-blue-400 hover:text-white
-}

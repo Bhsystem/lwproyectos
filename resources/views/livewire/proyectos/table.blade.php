@@ -10,7 +10,7 @@
         </thead>
         <tbody class="max-h-[31rem]" x-data>
             {{-- Seccion para agergar nuevo elemento --}}
-            <tr class="bg-emerald-200 bg-opacity-25 " x-data="{ open: @entangle('newRow') }" x-show="open">
+            <tr class="bg-emerald-200 " x-data="{ open: @entangle('newRow') }" x-show="open">
                 <td class="w-1/12 py-2">
                     <select wire:model="eEstado.0" required class="input-table bg-transparent focus:bg-white">
                         <option>Tipo de Trabajo</option>
@@ -34,7 +34,7 @@
 
             {{-- Seccion de los elementos existentes  --}}
             @foreach($etapasTable as $etapas)
-             <tr  x-init="$wire.setColor({{$etapas->trabajo}})" class="hover:bg-gray-200 border{{array_search($etapas->trabajo, $color)}}-1">
+             <tr  x-init="$wire.setColor({{$etapas->trabajo}})" class="hover:bg-gray-200 border{{array_search($etapas->trabajo, $color)}}">
                 <td>
                     <select wire:model="eEstado.{{ $etapas->id }}" :key="{{$etapas->id}}" class="input-table bg-transparent focus:bg-white">
                         <option>{{$etapas->estado ?? "Tipo de Trabajo"}}</option>

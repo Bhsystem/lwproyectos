@@ -26,13 +26,13 @@ class Index extends Component
     ];
 
     public $columns = [
-       ['proyecto','Proyecto','40%'],
-       ['persona_id','Responsable','20%' ],
-       ['trabajo','Trabajo' , '10%'],
-       ['prioridad','Prioridad', '10%'],
-       ['id','Fecha de Corte','10%'],
-       ['fecha_planteamiento','Fecha Planteamiento','10%'],
-       ['estado','Estado','10%']
+        'proyecto' => 'Proyecto',
+        'persona_id' => 'Responsable',
+        'trabajo' => 'Trabajo',
+        'prioridad' => 'Prioridad',
+        'id' => 'Fecha de Corte',
+        'fecha_planteamiento' => 'Fecha Planteamiento',
+        'estado' => 'Estado',
     ];
 
     //listeners
