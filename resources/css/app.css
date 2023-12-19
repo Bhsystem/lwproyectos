@@ -45,6 +45,9 @@
     .table-responsive tbody tr{
         @apply flex w-full cursor-pointer
     }
+    .bordered tr{
+        @apply border-gray-400 border-b
+     }
 
 
     .btn{ 

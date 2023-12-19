@@ -70,7 +70,7 @@
                         @endforeach
                     </tr>
                 </thead>
-                <tbody>
+                <tbody class="bordered">
                     @foreach($proyectos as $proyecto)
                     <tr class="hover:bg-gray-200 hover:font-bold cursor-pointer @if($proyecto->persona_id == auth::user()->id || auth::user()->id == 5) asd @else bg-blue-200 @endif" 
                         x-on:contextmenu="$event.preventDefault();
