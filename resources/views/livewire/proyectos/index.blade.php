@@ -1,15 +1,22 @@
-<div class="p-5">
+<div class="px-5">
     {{-- The Master doesn't talk, he acts. --}}
 
     {{-- Barra de accion --}}
     <div x-data="{showContextMenu:false}">
 
-        <div class="flex justify-between items-end shadow bg-gray-200 py-3 px-5 rounded rounded-t" @click.away="showContextMenu=false">
+        <div class="flex justify-between items-end shadow bg-gray-200 py-1 px-5 rounded rounded-t" @click.away="showContextMenu=false">
             <div>
                 <h1 class="text-center font-bold text-2xl">Proyectos</h1>
             </div>
-            {{--No se que es <div>{{session('search')}}</div> --}}
             <div>
+                <label><small>Fecha de Inicio</small></label>
+                <input type="date" name="" wire:model="f_inicio">
+                
+                <label><small>Fecha de Finalizacion</small></label>
+                <input type="date" name="" wire:model="f_final">
+            </div>
+            {{--No se que es <div>{{session('search')}}</div> --}}
+            <small>
                 <label for="select">estado del Proyecto</label><br>
                 <select name="select" class="lw-select " wire:model="status">
                     <option>Activo</option>
@@ -17,18 +24,17 @@
                     <option>Finalizado</option>
                     <option>Todos</option>
                 </select>
-            </div>        
+            </small>        
             @if(auth()->user()->id == 5)
-            <div>
+            <small>
                 <label for="select">Persona Responsable</label><br>
                 <select name="select" class="lw-select" wire:model="manager">
                         <option value="">Todos</option>
                     @foreach($this->managers as $user )
                         <option value="{{$user->id}}">{{$user->name}}</option> 
                     @endforeach
-
                 </select>
-            </div>
+            </small>
             @endif
 
             <div class="justify-end px-3 ">
@@ -43,13 +49,13 @@
         {{-- Filtro de Busqueda --}}
             
         {{--Contenedor de tabla--}}
-       <div class="w-60 md:w-full table-responsive">
+       <div class="w-60 h-[790px] bg-red-200 md:w-full  overflow-scroll">
             <livewire:proyectos.contextual-menu :managers="$this->managers"/>
             <table class="table table-simetric">
-                <thead>
-                    <tr class="cursor-alias">
+                <thead class="sticky top-0 bg-black">
+                    <tr class="cursor-alias sticky top-0 bg-black ">
                         @foreach($columns as $key => $column)
-                            <th wire:click="sort('{{$key}}')" >
+                            <th class="sticky top-0 bg-black" wire:click="sort('{{$key}}')" >
                                 <div class="flex gap-1"> 
                                 {{$column}}
 
