@@ -23,12 +23,6 @@ class Index extends Component
     public $f_inicio;
     public $f_final;
 
-    protected $queryString = [
-        'manager' => ['except' => ''],
-        'search',
-        'status',
-    ];
-
     public $columns = [
         'proyecto' => 'Proyecto',
         'persona_id' => 'Responsable',
@@ -39,12 +33,28 @@ class Index extends Component
         'estado' => 'Estado',
     ];
 
+    protected $queryString = [
+        'manager' => ['except' => ''],
+        'search',
+        'status',
+        'f_inicio',
+        'f_final',
+    ];
+
+    protected $messages = [
+        'f_final.after_or_equal' => 'La fecha final debe ser igual o posterior a la fecha de inicio.',
+    ];
+
+
+
     //listeners
     protected $listeners = ['refreshComponent' => '$refresh', 'filters'];
 
     //functions
     public function render()
     {   
+
+
         $proyectos = Proyecto::orderBy($this->sortColumn, $this->sortOrder ?? 'ASC');
         $proyectos =  $this->searchStatus($proyectos);
         
@@ -114,6 +124,8 @@ class Index extends Component
     }
 
     public function betweenFecha($table){
+        ($this->f_inicio > $this->f_final) ?  $this->f_final = date('Y-m-d') : $this->f_final;
+
         return $table->wherebetween('fecha_planteamiento',[$this->f_inicio, $this->f_final]);
     }
 }

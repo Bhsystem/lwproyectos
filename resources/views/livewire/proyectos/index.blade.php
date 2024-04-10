@@ -10,10 +10,14 @@
             </div>
             <div>
                 <label><small>Fecha de Inicio</small></label>
-                <input type="date" name="" wire:model="f_inicio">
-                
+                <x-jet-input type="date" name="" wire:model.lazy="f_inicio"/>
+                 @error('f_inicio') <span class="text-red-500">{{ $message }}</span> @enderror
+
                 <label><small>Fecha de Finalizacion</small></label>
-                <input type="date" name="" wire:model="f_final">
+                <x-jet-input type="date" name="" wire:model.lazy="f_final"/>
+                @error('f_inicio') <span class="text-red-500">{{ $message }}</span> @enderror
+
+
             </div>
             {{--No se que es <div>{{session('search')}}</div> --}}
             <small>
@@ -49,7 +53,7 @@
         {{-- Filtro de Busqueda --}}
             
         {{--Contenedor de tabla--}}
-       <div class="w-60 h-[790px] bg-red-200 md:w-full  overflow-scroll">
+       <div class="w-60 h-[790px] md:w-full  overflow-scroll">
             <livewire:proyectos.contextual-menu :managers="$this->managers"/>
             <table class="table table-simetric">
                 <thead class="sticky top-0 bg-black">
