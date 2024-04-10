@@ -16,7 +16,7 @@
 
 
     .table-responsive{
-        @apply table-fixed overflow-x-scroll md:overflow-hidden
+        @apply overflow-y-scroll md:overflow-hidden
     }
 
     .table-responsive thead tr{
@@ -24,7 +24,7 @@
     }
 
     .table-responsive tbody{    
-        @apply overflow-y-scroll  flex flex-col justify-between w-full;
+        @apply flex flex-col justify-between w-full;
     }
 
     .table-simetric th, .table-simetric td {

@@ -19,6 +19,10 @@ class Index extends Component
     public $status = 'Activo';
     public $manager;
 
+    //Filtro
+    public $f_inicio;
+    public $f_final;
+
     protected $queryString = [
         'manager' => ['except' => ''],
         'search',
@@ -60,7 +64,10 @@ class Index extends Component
 
         if($this->manager){
             $proyectos->where('persona_id',$this->manager);
+        }
 
+        if($this->f_inicio && $this->f_final){
+            $proyectos = $this->betweenFecha($proyectos);
         }
         
 
@@ -104,6 +111,10 @@ class Index extends Component
     {
         $this->sortColumn = $column;
         $this->sortOrder =  $this->sortOrder == 'desc' ? 'asc' : 'desc';
+    }
+
+    public function betweenFecha($table){
+        return $table->wherebetween('fecha_planteamiento',[$this->f_inicio, $this->f_final]);
     }
 }
     
